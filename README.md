@@ -17,7 +17,7 @@ El proyecto prescindira de javascript como su base ademas de un completo control
 con mongoDB como base de datos, como motor visual jade, como constructor base
 express, con back-end base nodejs entre algunas otras herramientas
 
-###Construccion en front-end de la pagina web
+### Construccion en front-end de la pagina web
 
 ![alt logo-javascritp-css-html](logo/hcj.jpg)
 
