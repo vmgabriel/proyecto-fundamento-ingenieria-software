@@ -1,0 +1,28 @@
+{
+  "name": "proyectofis",
+  "version": "0.0.1",
+  "description": "Proyecto de Fundamentos de Ingenieria de Software FUTPRO",
+  "main": "app.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Nekrozz/ProyectoFIS.git"
+  },
+  "author": "Gabriel",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://gitlab.com/Nekrozz/ProyectoFIS/issues"
+  },
+  "homepage": "https://gitlab.com/Nekrozz/ProyectoFIS#README",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jade": "^1.11.0",
+    "mongoose": "^4.13.1"
+  }
+}
