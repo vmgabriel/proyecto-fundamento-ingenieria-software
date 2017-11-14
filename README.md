@@ -33,4 +33,4 @@ Construccion de back-end
 
 Sabiendo que es una base de datos NOSQL virtualizaremos la forma de estructurarlo
 
-![alt logo-de-mongo-DB](logo/logo-mongo.png)
+![alt logo-de-mongo-DB](logo/logo_mongo.png)
