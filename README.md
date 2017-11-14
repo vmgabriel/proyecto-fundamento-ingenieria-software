@@ -23,4 +23,14 @@ Construccion de back-end
 
 ### Enfoque (Framework a usar)
 
-![alt logo-de-sails-framwork](logo/sails.png)
+![alt logo-de-express](logo/express-logo.png)
+
+### Motor Grafico (Template Engine)
+
+![alt logo-de-jade-lang](logo/jade-logo.png)
+
+### Base de Datos (Dirigida a Documentos -> Virtualizacion a Estructurada)
+
+Sabiendo que es una base de datos NOSQL virtualizaremos la forma de estructurarlo
+
+![alt logo-de-mongo-DB](logo/logo-mongo.png)
