@@ -1,4 +1,92 @@
-extends ./layout.jade
+extends ./template/layout_index.jade
 block contenido
-  h1 Bienvenidos a la Pagina
-  a(href="/login") Iniciar Sesion
+  // Header
+  include ./template/header_index.jade
+  // Banner
+  section#banner
+    i.icon.fa-diamond
+    h2 Etiam adipiscing
+    p Magna feugiat lorem dolor egestas
+    ul.actions
+      li
+        a.button.big.special(href='#') Learn More
+  // One
+  section#one.wrapper.style1
+    .inner
+      article.feature.left
+        span.image
+          img(src='public/images/pic01.jpg', alt='')
+        .content
+          h2 Integer vitae libero acrisus egestas placerat  sollicitudin
+          p
+            | Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est.
+          ul.actions
+            li
+              a.button.alt(href='#') More
+      article.feature.right
+        span.image
+          img(src='public/images/pic02.jpg', alt='')
+        .content
+          h2 Integer vitae libero acrisus egestas placerat  sollicitudin
+          p
+            | Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est.
+          ul.actions
+            li
+              a.button.alt(href='#') More
+  // Two
+  section#two.wrapper.special
+    .inner
+      header.major.narrow
+        h2 Aliquam Blandit Mauris
+        p Ipsum dolor tempus commodo turpis adipiscing Tempor placerat sed amet accumsan
+      .image-grid
+        a.image(href='#')
+          img(src='public/images/pic03.jpg', alt='')
+        a.image(href='#')
+          img(src='public/images/pic04.jpg', alt='')
+        a.image(href='#')
+          img(src='public/images/pic05.jpg', alt='')
+        a.image(href='#')
+          img(src='public/images/pic06.jpg', alt='')
+        a.image(href='#')
+          img(src='public/images/pic07.jpg', alt='')
+        a.image(href='#')
+          img(src='public/images/pic08.jpg', alt='')
+        a.image(href='#')
+          img(src='public/images/pic09.jpg', alt='')
+        a.image(href='#')
+          img(src='public/images/pic10.jpg', alt='')
+      ul.actions
+        li
+          a.button.big.alt(href='#') Tempus Aliquam
+  // Three
+  section#three.wrapper.style3.special
+    .inner
+      header.major.narrow
+        h2 Magna sed consequat tempus
+        p Ipsum dolor tempus commodo turpis adipiscing Tempor placerat sed amet accumsan
+      ul.actions
+        li
+          a.button.big.alt(href='#') Magna feugiat
+  // Four
+  section#four.wrapper.style2.special
+    .inner
+      header.major.narrow
+        h2 Get in touch
+        p Ipsum dolor tempus commodo adipiscing
+      form(action='#', method='POST')
+        .container(class='75%')
+          .row.uniform(class='50%')
+            .6u(class='12u$(xsmall)')
+              input(name='name', placeholder='Name', type='text')
+            div(class='6u$ 12u$(xsmall)')
+              input(name='email', placeholder='Email', type='email')
+            div(class='12u$')
+              textarea(name='message', placeholder='Message', rows='4')
+        ul.actions
+          li
+            input.special(type='submit', value='Submit')
+          li
+            input.alt(type='reset', value='Reset')
+            
+  include ./template/footer.jade

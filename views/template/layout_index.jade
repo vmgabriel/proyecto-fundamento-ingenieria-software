@@ -1,0 +1,28 @@
+doctype
+html(lang='es')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    meta(name='description', content='Proyecto Final Fundamentos de Ingenieria de Software')
+    meta(name='author', content='Gabriel Vargas - Eduardo Rios')
+    title FutPro
+    //if lte IE 8
+      script(src='public/js/ie/html5shiv.js')
+    link(rel='stylesheet', href='public/css/main.css')
+    //if lte IE 8
+      link(rel='stylesheet', href='public/css/ie8.css')
+    //if lte IE 9
+      link(rel='stylesheet', href='public/css/ie9.css')
+
+  body.landing
+    block contenido
+
+    // Scripts
+    script(src='public/js/jquery.min.js')
+    script(src='public/js/skel.min.js')
+    script(src='public/js/util.js')
+    //if lte IE 8
+      script(src='public/js/ie/respond.min.js')
+    script(src='public/js/main.js')

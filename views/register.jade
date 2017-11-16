@@ -1,0 +1,37 @@
+extends ./template/layout.jade
+
+block contenido
+  //HEADER
+  include ./template/header.jade
+  
+  div(class="container")
+    header(class="major special")
+      h2 Nuevo Cotizante
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+      form(method='POST', action='/cotizante')
+        .row.uniform(class='50%')
+          div(class='12u$')
+              label(for="nombre") Ingrese Nombres:
+              input#name(name='nombre', value='', placeholder='Nombre', type='text')
+          div(class='12u$')
+              label(for="apellido") Ingrese Apellidos:
+              input#name(name='apellido', value='', placeholder='Apellido', type='text')
+          div(class='12u$')
+            label(for="correo") Ingrese Correo Electronico:
+            input#email(name='correo', value='', placeholder='Correo Electrico', type='email')
+          div(class='12u$')
+              label(for="pais") Ingrese Pais de Nacionalidad:
+              input#name(name='pais', value='', placeholder='Pais Origen', type='text')
+          div(class='12u$')
+              label(for="ciudad") Ingrese Ciudad de Nacionalidad:
+              input#name(name='ciudad', value='', placeholder='Cuidad Origen', type='text')
+          div(class='12u$')
+            ul.actions
+              li
+                input.special(value='Registrar', type='submit')
+              li
+                input(value='Borrar', type='reset')
+            
+  //FOOTER
+  include ./template/footer.jade

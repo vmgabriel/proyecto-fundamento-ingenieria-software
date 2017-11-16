@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var User = require("./models/user").User;
+var Cotizante = require("./models/cotizante").Cotizante;
 var app = express();
 
 app.use("/public" ,express.static('public'));
@@ -14,6 +14,10 @@ app.get("/", function(req,res){
   res.render("index");
 });
 
+app.get("/register", function(req,res){
+  res.render("register");
+});
+
 app.get("/login", function(req,res){
   User.find(function(err,doc){
     console.log(doc);
@@ -21,15 +25,21 @@ app.get("/login", function(req,res){
   });
 });
 
-app.post("/users", function(req, res){
-  let user = new User({
-    email: req.body.email,
-    password: req.body.password,
-    password_confirmation: req.body.password_confirmation
+app.post("/cotizante", function(req, res){
+  let cotizante = new Cotizante({
+    s_nombre: req.body.nombre,
+    s_apellido: req.body.apellido,
+    s_ciudad: req.body.ciudad,
+    s_correo: req.body.email,
+    s_pais: req.body.pais
   });
 
-  user.save(function(){
-    res.send("Datos guardados");
+  cotizante.save(function(err){
+    if (err)
+    {
+      console.log(String(err))
+    }
+    res.render("envio_correcto")
   });
 });
 
