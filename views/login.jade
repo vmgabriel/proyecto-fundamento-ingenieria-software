@@ -1,16 +1,29 @@
-extends ./layout.jade
+extends ./template/layout.jade
+
 block contenido
-  h1 Bienvenidos a la Pagina de Login
-  a(href="/") Cerrar Sesion
-  form(action="/users", method="POST")
-    div(class="form-group")
-      label(for="email") Ingrese Correo Electronico:
-      input(type="text", name="email", placeholder="Correo", id="email", class="form-control")
-    div(class="form-group")
-      label(for="password") Ingrese Contraseña:
-      input(type="password", name="password", placeholder="Contraseña", id="password", class="form-control")
-    div(class="form-group")
-      label(for="password") Ingrese Contraseña de Nuevo:
-      input(type="password", name="password_confirmation", placeholder="Contraseña de Nuevo", id="password_confirmation", class="form-control")
-    div(class="form-group")
-      input(type="submit", value="Iniciar Sesion", class="btn btn-info")
+
+  //HEADER
+  include ./template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Iniciar Sesion
+      p El inicio de Sesion depende del rol que juega en el sistema
+
+    form(action="/sesion", method="POST")
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="usuario") Ingrese Usuario:
+          input(type="text", name="usuario", placeholder="Usuario", id="usuario")
+        div(class='12u$')
+          label(for="password") Ingrese Contraseña:
+          input(type="password", name="password", placeholder="Contraseña", id="password")
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Ingresar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+      
+  //FOOTER
+  include ./template/footer.jade

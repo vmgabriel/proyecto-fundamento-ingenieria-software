@@ -4,12 +4,10 @@ var Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost/Pagina_FUTPRO',{ useMongoClient: true });
 
 var Sucursal_schema = new Schema({
-  id: Numeric,
-  s_nombre: String,
-  s_apellido: String,
-  s_ciudad: String,
-  s_correo: String,
-  s_pais: String
+  s_nombre: {type: String, required: "Campo Obligatorio"},
+  s_direccion: {type: String, required: "Direccion Necesiria"},
+  i_cantidadCategorias: {type: Number, required: "Cantidad Necesaria"},
+  s_ciudad: {type: String, required: "Nombre de la Ciudad Necesario"}
 });
 
 var Sucursal = mongoose.model("Sucursal", Sucursal_schema);
