@@ -11,6 +11,41 @@ Proyecto para FutPro, una plataforma para el control basico de pagina web que pu
 - Cristian Eduardo Rios Guarín
 - Gabriel Vargas Monroy
 
+### Dependencias
+- node
+- navegador web
+- npm -> gestor de librerias de node, viene con la instalacion
+- git
+- mongoDB
+
+### Instalacion y montaje
+#### Primer Uso
+para el primer uso se debe tener el git descargado
+```
+git clone https://gitlab.com/Nekrozz/ProyectoFIS.git
+```
+luego se debe instalar las dependencias del proyecto, en el directorio del proyecto
+
+```
+npm install
+```
+
+Esto tardara dependiendo de algunas cosas como el internet y el tamaño de los archivos, el
+siguiente paso es cargar el mongo, EL MONGO DEBE ESTAR EJECUTANDOSE.
+
+Luego de ello podemos cargar el servidor, desde la carpeta con este comando:
+```
+node app.js
+```
+Esto no mostrara nada a menos que haya generado un error debemos ingresar desde el
+navegador a `localhost:8080` mostrando la pagina montada y lista para su uso
+
+#### Usos Posteriores
+Ya no necesitas sino cargar la base de datos y el servidor
+```
+node app.js
+```
+
 ### Lenguaje
 
 El proyecto prescindira de javascript como su base ademas de un completo control
