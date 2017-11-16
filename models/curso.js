@@ -3,24 +3,20 @@ var Schema = mongoose.Schema;
 
 mongoose.connect('mongodb://localhost/Pagina_FUTPRO',{ useMongoClient: true });
 
-const prueba_email = [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/, "Email no valido"];
-const maxima_cedula = [99999999999, "El valor debe ser menor al ingresado"]
+const posibles_valores = ['sub-11', 'sub-15', 'sub-20'. 'profesional'];
 
-var Entrenador_schema = new Schema({
-  n_ced: {type: Number, required: "Cedula es Necesaria", max: maxima_cedula },
-  s_usuario: {type: String, requiered "Usuario No Ingresado"},
+var Curso_schema = new Schema({
   s_nombre: {type:String, required: "Nombre No Ingresado"},
-  s_apellido: {type: String, required: "Apellido Necesario"},
+  s_categoria: {type: String, enum: {values: posibles_valores, message: "Opcion no valida"}},
   s_descripcion: String,
-  s_correo: {type: String, required: "Necesario Ingresar Correo", match: prueba_email},
+  n_precio: {type: Number, required: "Valor es necesario"}
   s_telefono: {type: Number, required: "Necesario Numero de Contacto"},
-  s_contraseña: {type: String, required: "Necesaria Contraseña"},
-  n_sucursal: {type: Number, required: "Sucursal es un Campo Obligatorio de Seleccion"}
+  s_entrenador: {type: Object, required: "Entrenador es Necerio"}
 });
 
-var Entrenador = mongoose.model("Entrenador", Entrenador_schema);
+var Curso = mongoose.model("Curso", Curso_schema);
 
-module.exports.Entrenador = Entrenador;
+module.exports.Curso = Curso;
 
 /*
 String

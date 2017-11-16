@@ -1,0 +1,17 @@
+show databases
+
+db
+
+use Pagina_FUTPRO;
+
+db.getCollectionNames() -> Muestra las colecciones en la base de datos
+
+db
+
+db.sucursals.save({ "s_nombre": 'Administrativo',"s_direccion": 'Calle 54A n 33-54Sur', "i_cantidadCategorias": 1, "s_ciudad": 'Bogota' });
+
+db.entrenadors.save({"n_ced": 123456789,"s_usuario": "administrador", "s_nombre": "Pedro", "s_apellido": "Mejia Solano", "s_descripcion": "Administrador de la escuela hombre jovial y muy servicial", "s_correo": "correo@yopmail.com", "n_telefono": 6767852, "s_contraseña": "12345","s_sucursal": ObjectId("5a0df8f81e6f215fb00575bb")});
+
+db.cursos.save({"s_nombre": "Bayern Muchich jr", "s_categoria": "sub-15", "s_descripcion": "Los estudiantes de este curso son capaces de conocer la filosfia del balon, el control la posesion, contencion entre otras son conocimientos basicos del pupilo", "n_precio": 120000, "s_telefono": 6403234, "s_entrenador": ObjectId("5a0df92f1e6f215fb00575bc")});
+
+db.acudientes.save({"n_ced": 7802000, "s_nombre": "Paquita", "d_fecha_nacimiento": new Date("1975-05-18T16:00:00Z"), "s_apellido": "Navaja Gomez", "s_comentarios": "", "s_correo": "paquita75@correo.com", "s_creencia_religiosa": "catolica", "s_direccion": "Calle D32 45d-s3sur", "s_eps": "cafe salud", "s_nombre_empresa": "indumil", "n_telefono": 9399394, "n_telefono_empresa": 3444323, "s_tipo_prestacionsocial": "pre pagada", "s_pais": "Colombia", "s_tiposangre": "A+", "s_usuario": "paquita75", "s_contraseña": "7802000", "s_curso": ObjectId("5a0e05fa1e6f215fb00575bd")})

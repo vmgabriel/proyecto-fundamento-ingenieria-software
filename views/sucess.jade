@@ -1,0 +1,9 @@
+extends ./template/layout.jade
+block contenido
+  include ./template/header.jade
+  div(class="container")
+    header(class="major special")
+      h2 Ingresado Corectamente
+      p Tu sesion ha sido iniciada, ya puedes ir a la plataforma
+      a(class="button" href="/platform") Entrar a la Plataforma
+  include ./template/footer.jade
