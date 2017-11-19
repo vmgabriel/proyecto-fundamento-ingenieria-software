@@ -1,0 +1,30 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todas las Sucursales
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Seleccione alguno para su posterior modificacion/eliminacion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Nombre
+                th Direccion
+                th Cantidad Categorias
+                th Ciudad
+                th Seleccion
+            tbody
+              for sucursal in sucursales
+                tr
+                  th= sucursal.s_nombre
+                  th= sucursal.s_direccion
+                  th= sucursal.i_cantidadCategorias
+                  th= sucursal.s_ciudad
+                  th
+                    a(href="/platform/sucursal/#{sucursal._id}") Seleccionar
+
+  include ../../template/footer.jade

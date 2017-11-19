@@ -1,0 +1,36 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Nuevo Curso
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/curso')
+      .row.uniform(class='50%')
+        div(class='12u$')
+            label(for="nombre") Ingrese Nombre:
+            input#name(name='nombre', value='', placeholder='Nombre', type='text')
+        div(class='12u$')
+          label(for="cbcategoria") Seleccione la sucursal:
+          div(class="select-wrapper")
+            select(id="cbscategoria" name="cbcategoria")
+              option(value="sub-11") sub-11
+              option(value="sub-15") sub-15
+              option(value="sub-20") sub-20
+              option(value="profesional") profesional
+        div(class='12u$')
+            label(for="precio") Ingrese Precio:
+            input#name(name='precio', value='', placeholder='Precio', type='text')
+        div(class='12u$')
+          label(for="telefono") Ingrese Telefono:
+          input#email(name='telefono', value='', placeholder='Cantidad Telefono', type='text')
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Registrar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade

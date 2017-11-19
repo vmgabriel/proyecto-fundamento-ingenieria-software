@@ -1,0 +1,15 @@
+extends ../template/layout.jade
+block contenido
+  include ../template/header.jade
+  div(class="container")
+    header(class="major special")
+      h2 Datos Ingresados Correctamente
+      p Los datos han sido enviados satisfactoriamente a la base de datos
+      
+      section
+        div(class="row")
+          div(class="12u center-block")
+            ul(class="actions vertical")
+              li
+                a(class="button" href="/") Inicio
+  include ../template/footer.jade

@@ -1,0 +1,55 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Nuevo Entrenador
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/entrenador')
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="cedula") Ingrese Cedula:
+          input(name='cedula', value='', placeholder="Cedula", type='text')
+        div(class='12u$')
+          label(for="nombre") Ingrese Nombre:
+          input(name='nombre', value='', placeholder='Nombre', type='text')
+        div(class='12u$')
+          label(for="apellido") Ingrese Apellido:
+          input(name='apellido', value='', placeholder='Apellido', type='text')
+        div(class='12u$')
+          label(for="correo") Ingrese Correo:
+          input(name='correo', value='', placeholder='Correo', type='email')
+        div(class='12u$')
+          label(for="telefono") Ingrese Telefono:
+          input(name='telefono', value='', placeholder='Telefono', type='text')
+        div(class='12u$')
+          label(for="usuario") Ingrese Usuario:
+          input(name='usuario', value='', placeholder='Usuario', type='text')
+        div(class='12u$')
+          label(for="contraseña") Ingrese Contraseña:
+          input(name='contraseña', value='', placeholder='Contraseña', type='password')
+        div(class='12u$')
+          label(for="contraseñar") Ingrese Repita Contraseña:
+          input(name='contraseñar', value='', placeholder='Repita Contraseña', type='password')
+        div(class='12u$')
+          label(for="cbsucursal") Seleccione la sucursal:
+          div(class="select-wrapper")
+            select(id="cbsucursal" name="cbsucursal")
+              option(value="1") valor1
+              option(value="2") valor2
+              option(value="3") valor3
+              option(value="4") valor5
+          
+        div(class="12u$")
+          label(for="descripcion") Ingrese Descripcion:
+          textarea(id="descripcion" name="descripcion" placeholder="Descripcion" rows=6)
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Registrar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade

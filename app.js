@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var session = require("express-session");
+//var session = require("express-session");
+var cookieSession = require("cookie-session");
 
 var Cotizante = require("./models/cotizante").Cotizante;
 var Entrenador = require("./models/entrenador").Entrenador;
@@ -21,22 +22,13 @@ app.use(bodyParser.json()); //Para peticiones application/json
 app.use(bodyParser.urlencoded({extended: true}));
 
 //Define el comportamiento de las sesiones
-app.use(session({
-  secret: "12hhjd345mmmhdj4ksas",
-  resave: false,
-  saveUninitialized: false
+app.use(cookieSession({
+  name: "session",
+  keys: ["key-1", "key-2"]
 }));
 
-app.use("/app", session_middleware);//Un especie de guarda en spaggueti
-app.use("/app", session_acudiente);//Un especie de guarda en spaggueti
-app.use("/app", router_app);
-
-app.use("/platform", session_middleware);//Un especie de guarda en spaggueti
-app.use("/platform", session_entrenador);//Un especie de guarda en spaggueti
-app.use("/platform", router_platform);
-
 app.set("view engine", "jade");
-app.set('views',__dirname+'/views');
+//app.set('views',__dirname+'/views');
 
 app.get("/", function(req,res){
   res.render("index");
@@ -98,7 +90,6 @@ app.post("/sesion", function(req, res){
     });
 });
 
-/*
 app.use("/app", session_middleware);//Un especie de guarda en spaggueti
 app.use("/app", session_acudiente);//Un especie de guarda en spaggueti
 app.use("/app", router_app);
@@ -106,7 +97,7 @@ app.use("/app", router_app);
 app.use("/platform", session_middleware);//Un especie de guarda en spaggueti
 app.use("/platform", session_entrenador);//Un especie de guarda en spaggueti
 app.use("/platform", router_platform);
-*/
+
 app.listen(8080, function(){
   console.log("Servidor Corriendo en puerto 8080");
   console.log("ingresa a http://localhost:8080");

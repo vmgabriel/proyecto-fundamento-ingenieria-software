@@ -2,6 +2,156 @@ extends ../template/layout.jade
 block contenido
   include ../template/header.jade
   
-  h1 Bienvenido Entrenador
+  section(id="main" class="wrapper")
+    header(class="major special")
+      h2 Bienvenido Entrenador #{user.s_nombre} #{user.s_apellido}
+      
+      .container
+        .table-wrapper
+          h4 Estudiantes en estado de mora
+          table.alt
+              thead
+                tr
+                  th Seleccionado
+                  th Nombre
+                  th Direccion
+                  th Ciudad
+              tbody
+                tr
+                  td 
+                    input#val1(name='estMora', checked='', type='radio')
+                    label(for="val1") .
+                  td Item 1
+                  td Ante turpis integer aliquet porttitor.
+                  td 29.99
+                tr
+                  td 
+                    input#val2(name='estMora', type='radio')
+                    label(for="val2") .
+                  td Item 2
+                  td Vis ac commodo adipiscing arcu aliquet.
+                  td 19.99
+                tr
+                  td 
+                    input#val3(name='estMora', type='radio')
+                    label(for="val3") .
+                  td Item 3
+                  td  Morbi faucibus arcu accumsan lorem.
+                  td 29.99
+                tr
+                  td 
+                    input#val4(name='estMora', type='radio')
+                    label(for="val4") .
+                  td Item 4
+                  td Vitae integer tempus condimentum.
+                  td 19.99
+                tr
+                  td 
+                    input#val5(name='estMora', type='radio')
+                    label(for="val5") .
+                  td Item 5
+                  td Ante turpis integer aliquet porttitor.
+                  td 29.99
+                  
+        .table-wrapper
+          h4 Cursos Inscritos
+          table.alt
+              thead
+                tr
+                  th Seleccionado
+                  th Nombre
+                  th Direccion
+                  th Ciudad
+              tbody
+                tr
+                  td 
+                    input#val1(name='priority', checked='', type='radio')
+                    label(for="val1") .
+                  td Item 1
+                  td Ante turpis integer aliquet porttitor.
+                  td 29.99
+                tr
+                  td 
+                    input#val2(name='priority', type='radio')
+                    label(for="val2") .
+                  td Item 2
+                  td Vis ac commodo adipiscing arcu aliquet.
+                  td 19.99
+                tr
+                  td 
+                    input#val3(name='priority', type='radio')
+                    label(for="val3") .
+                  td Item 3
+                  td  Morbi faucibus arcu accumsan lorem.
+                  td 29.99
+                tr
+                  td 
+                    input#val4(name='priority', type='radio')
+                    label(for="val4") .
+                  td Item 4
+                  td Vitae integer tempus condimentum.
+                  td 19.99
+                tr
+                  td 
+                    input#val5(name='priority', type='radio')
+                    label(for="val5") .
+                  td Item 5
+                  td Ante turpis integer aliquet porttitor.
+                  td 29.99
+      
+      section(id="one" class="wrapper style1")
+        h4 ingresar y Modificar nuevos
+        div(class="row")
+          div(class="3u 6u(small) 12u$(xsmall)")
+            ul(class="actions vertical")
+              li
+                a(class="button" href="platform/sucursal/new") Nuevo Sucursal
+              li
+                a(class="button alt" href="platform/sucursal") Ver Sucursales
+            
+          div(class="3u 6u(small) 12u$(xsmall)")
+            ul(class="actions vertical")
+              li
+                a(class="button" href="entrenador/new") Nueva Entrenador
+              li
+                a(class="button alt" href="platform/entrenador") Ver Entrenadores
+          div(class="3u 6u(small) 12u$(xsmall)")
+            ul(class="actions vertical")
+              li
+                a(class="button" href="platform/curso/new") Nuevo Curso
+              li
+                  a(class="button alt" href="platform/curso") Modificar Curso
+          div(class="3u 6u(small) 12u$(xsmall)")
+            ul(class="actions vertical")
+              li
+                a(class="button" href="platform/acudiente/new") Nuevo Acudiente
+              li
+                a(class="button alt" href="platform/acudiente") Modificar Acudiente
+        div(class="row")
+          div(class="3u 6u(small) 12u$(xsmall)")
+            ul(class="actions vertical")
+              li
+                a(class="button" href="platform/evento/new") Nuevo Evento
+              li
+                a(class="button alt" href="platform/evento") Modificar Evento
+          div(class="3u 6u(small) 12u$(xsmall)")
+            ul(class="actions vertical")
+              li
+                a(class="button" href="platform/pago/new") Nuevo Pago
+              li
+                a(class="button alt" href="platform/pago") Modificar Pago
+          div(class="3u 6u(small) 12u$(xsmall)")
+            ul(class="actions vertical")
+              li
+                a(class="button" href="platform/sesion/new") Nuevo Sesion
+              li
+                a(class="button alt" href="platform/sesion") Modificar Sesion
+          div(class="3u 6u(small) 12u$(xsmall)")
+            ul(class="actions vertical")
+              li
+                a(class="button" href="platform/reporte/new") Nuevo Reporte
+              li
+                a(class="button alt" href="platform/reporte") Modificar Sesion
+                      
   
   include ../template/footer.jade

@@ -1,0 +1,129 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Nuevo Entrenador
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/acudiente')
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="cedula") Ingrese Cedula:
+          input(name='cedula', value='', placeholder="Cedula", type='text')
+        div(class='12u$')
+          label(for="nombre") Ingrese Nombre:
+          input(name='nombre', value='', placeholder='Nombre', type='text')
+        div(class='12u$')
+          label(for="apellido") Ingrese Apellido:
+          input(name='apellido', value='', placeholder='Apellido', type='text')
+        div(clas="12u$")
+          label(for="fecha-n") Ingrese Fecha de Nacimiento:
+          input(id="fecha-n", class="fecha" ,type="date")
+        div(class='12u$')
+          label(for="correo") Ingrese Correo:
+          input(name='correo', value='', placeholder='Correo', type='email')
+        div(class='12u$')
+          label(for="creencia") Ingrese Creencia Religiosa:
+          input(name='creencia', value='', placeholder='Creencia Religiosa', type='text')
+        div(class='12u$')
+          label(for="direccion") Ingrese Direccion:
+          input(name='direccion', value='', placeholder='Direccion', type='text')
+        div(class='12u$')
+          label(for="eps") Ingrese EPS:
+          input(name='eps', value='', placeholder='EPS', type='text')
+        div(class='12u$')
+          label(for="nombre_empresa") Ingrese Nombre Empresa:
+          input(name='nombre_empresa', value='', placeholder='Nombre Empresa', type='text')
+        div(class='12u$')
+          label(for="telefono") Ingrese Telefono:
+          input(name='telefono', value='', placeholder='Telefono', type='text')  
+        div(class='12u$')
+          label(for="telefono_empresa") Ingrese Telefono Empresa:
+          input(name='telefono_empresa', value='', placeholder='Telefono Empresa', type='text')
+        div(class='12u$')
+          label(for="prestacion_social") Ingrese Prestacion Social:
+          input(name='prestacion_social', value='', placeholder='Prestacion Social', type='text')
+        div(class='12u$')
+          label(for="pais") Ingrese Pais:
+          input(name='pais', value='', placeholder='Pais', type='text')
+        div(class='12u$')
+          label(for="cbtipo_sangre") Seleccione el Tipo de Sangre:
+          div(class="select-wrapper")
+            select(id="cbtipo_sangre" name="cbtipo_sangre")
+              option(value="A+") A+
+              option(value="A-") A-
+              option(value="B+") B+
+              option(value="B-") B-
+              option(value="O+") O+
+              option(value="O-") O-
+              option(value="AB+") AB+
+              option(value="AB-") AB-
+        div(class='12u$')
+          label(for="usuario") Ingrese Usuario:
+          input(name='usuario', value='', placeholder='Usuario', type='text')
+        div(class='12u$')
+          label(for="contraseña") Ingrese Contraseña:
+          input(name='contraseña', value='', placeholder='Contraseña', type='password')
+        div(class='12u$')
+          label(for="contraseñar") Ingrese Repita Contraseña:
+          input(name='contraseñar', value='', placeholder='Repita Contraseña', type='password')
+        div(class="12u$")
+          label(for="descripcion") Ingrese Descripcion:
+          textarea(id="descripcion" name="descripcion" placeholder="Descripcion" rows=6)
+        
+        .table-wrapper
+          h4 Seleccione Curso a Vincular
+          table.alt
+              thead
+                tr
+                  th Seleccionado
+                  th Nombre
+                  th Direccion
+                  th Ciudad
+              tbody
+                tr
+                  td 
+                    input#val1(name='priority', checked='', type='radio')
+                    label(for="val1") .
+                  td Item 1
+                  td Ante turpis integer aliquet porttitor.
+                  td 29.99
+                tr
+                  td 
+                    input#val2(name='priority', type='radio')
+                    label(for="val2") .
+                  td Item 2
+                  td Vis ac commodo adipiscing arcu aliquet.
+                  td 19.99
+                tr
+                  td 
+                    input#val3(name='priority', type='radio')
+                    label(for="val3") .
+                  td Item 3
+                  td  Morbi faucibus arcu accumsan lorem.
+                  td 29.99
+                tr
+                  td 
+                    input#val4(name='priority', type='radio')
+                    label(for="val4") .
+                  td Item 4
+                  td Vitae integer tempus condimentum.
+                  td 19.99
+                tr
+                  td 
+                    input#val5(name='priority', type='radio')
+                    label(for="val5") .
+                  td Item 5
+                  td Ante turpis integer aliquet porttitor.
+                  td 29.99
+        
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Registrar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade

@@ -1,0 +1,33 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Modificar Sucursal
+      p Modificar datos de la sucursal
+    h3 Formulario
+    
+    form(method='POST', action='/platform/sucursal')
+      .row.uniform(class='50%')
+
+        div(class='12u$')
+            label(for="nombre") Ingrese Nombre:
+            input#name(name='nombre', value='', placeholder='Nombre', type='text')
+        div(class='12u$')
+            label(for="direccion") Ingrese Direccion:
+            input#name(name='direccion', value='', placeholder='Direccion', type='text')
+        div(class='12u$')
+          label(for="categorias") Ingrese Cantidad de Categorias:
+          input#email(name='categorias', value='', placeholder='Cantidad Categorias', type='text')
+        div(class='12u$')
+            label(for="ciudad") Ingrese Ciudad:
+            input#name(name='ciudad', value='', placeholder='Ciudad', type='text')
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Registrar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade
