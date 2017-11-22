@@ -20,9 +20,6 @@ module.exports.Pago = Pago;
 String
 Number
 Date
-Buffer
 Boolean
-Mixed
 Objectid
-Array
 */

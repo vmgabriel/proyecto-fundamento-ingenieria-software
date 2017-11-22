@@ -4,7 +4,7 @@ block contenido
 
   div(class="container")
     header(class="major special")
-      h2 Nuevo Entrenador
+      h2 Nuevo curso
       p Ingrese los datos solicitados para ingresarlo a la base de datos
     h3 Formulario
     form(method='POST', action='/platform/acudiente')
@@ -19,8 +19,8 @@ block contenido
           label(for="apellido") Ingrese Apellido:
           input(name='apellido', value='', placeholder='Apellido', type='text')
         div(clas="12u$")
-          label(for="fecha-n") Ingrese Fecha de Nacimiento:
-          input(id="fecha-n", class="fecha" ,type="date")
+          label(for="fecha_n") Ingrese Fecha de Nacimiento:
+          input(id="fecha_n", class="fecha", name="fecha" ,type="date")
         div(class='12u$')
           label(for="correo") Ingrese Correo:
           input(name='correo', value='', placeholder='Correo', type='email')
@@ -80,44 +80,17 @@ block contenido
                 tr
                   th Seleccionado
                   th Nombre
-                  th Direccion
-                  th Ciudad
+                  th Categoria
+                  th Telefono
               tbody
-                tr
-                  td 
-                    input#val1(name='priority', checked='', type='radio')
-                    label(for="val1") .
-                  td Item 1
-                  td Ante turpis integer aliquet porttitor.
-                  td 29.99
-                tr
-                  td 
-                    input#val2(name='priority', type='radio')
-                    label(for="val2") .
-                  td Item 2
-                  td Vis ac commodo adipiscing arcu aliquet.
-                  td 19.99
-                tr
-                  td 
-                    input#val3(name='priority', type='radio')
-                    label(for="val3") .
-                  td Item 3
-                  td  Morbi faucibus arcu accumsan lorem.
-                  td 29.99
-                tr
-                  td 
-                    input#val4(name='priority', type='radio')
-                    label(for="val4") .
-                  td Item 4
-                  td Vitae integer tempus condimentum.
-                  td 19.99
-                tr
-                  td 
-                    input#val5(name='priority', type='radio')
-                    label(for="val5") .
-                  td Item 5
-                  td Ante turpis integer aliquet porttitor.
-                  td 29.99
+                for curso in cursos
+                  tr
+                    td 
+                      input(id="#{curso._id}", value="#{curso._id}", checked='', name='curso', type='radio')
+                      label(for="#{curso._id}") .
+                    td= curso.s_nombre
+                    td= curso.s_categoria
+                    td= curso.s_telefono
         
         div(class='12u$')
           ul.actions

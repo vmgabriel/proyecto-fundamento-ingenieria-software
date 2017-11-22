@@ -1,0 +1,33 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todos los Cursos
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Seleccione alguno para su posterior Seleccion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Nombre
+                th Categoria
+                th Precio
+                th Telefono
+                th Entrenador
+                th Seleccion
+            tbody
+              for curso in cursos
+                tr
+                  th= curso.s_nombre
+                  th= curso.s_categoria
+                  th= curso.n_precio
+                  th= curso.s_telefono
+                  th
+                    a(href="entrenador/#{curso.s_entrenador}") Ver
+                  th
+                    a(href="curso/#{curso._id}") Seleccionar
+
+  include ../../template/footer.jade

@@ -1,0 +1,41 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todos los Acudiente
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Seleccione alguno para su posterior Utilizacion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Cedula
+                th Nombre
+                th Apellido
+                th Fecha Nacimientos
+                th Correo
+                th Direccion
+                th EPS
+                th Telefono
+                th Curso
+                th Seleccion
+            tbody
+              for acudiente in acudientes
+                tr
+                  th= acudiente.n_ced
+                  th= acudiente.s_nombre
+                  th= acudiente.s_apellido
+                  th= acudiente.d_fecha_nacimiento
+                  th= acudiente.s_correo
+                  th= acudiente.s_direccion
+                  th= acudiente.s_eps
+                  th= acudiente.n_telefono
+                  th
+                    a(href="curso/#{acudiente.s_curso}") Ver
+                  th
+                    a(href="acudiente/#{acudiente._id}") Seleccionar
+
+  include ../../template/footer.jade

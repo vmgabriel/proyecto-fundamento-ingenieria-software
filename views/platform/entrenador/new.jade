@@ -37,10 +37,8 @@ block contenido
           label(for="cbsucursal") Seleccione la sucursal:
           div(class="select-wrapper")
             select(id="cbsucursal" name="cbsucursal")
-              option(value="1") valor1
-              option(value="2") valor2
-              option(value="3") valor3
-              option(value="4") valor5
+              for sucursal in sucursales
+                option(value="#{sucursal._id}")= sucursal.s_nombre
           
         div(class="12u$")
           label(for="descripcion") Ingrese Descripcion:
