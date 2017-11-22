@@ -15,7 +15,7 @@ var Entrenador_schema = new Schema({
   s_correo: {type: String, required: "Necesario Ingresar Correo", match: prueba_email},
   n_telefono: {type: Number, required: "Necesario Numero de Contacto"},
   s_contraseña: {type: String, required: "Necesaria Contraseña"},
-  s_sucursal: {type: Object, required: "Sucursal es un Campo Obligatorio de Seleccion"}
+  s_sucursal: {type: Schema.Types.ObjectId, ref: "sucursal", required: "Sucursal es un Campo Obligatorio de Seleccion"}
 });
 
 var Entrenador = mongoose.model("Entrenador", Entrenador_schema);

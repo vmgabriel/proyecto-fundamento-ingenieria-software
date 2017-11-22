@@ -24,7 +24,7 @@ var Acudiente_schema = new Schema({
   s_tiposangre: {type: String, required: "El tipo de sangre es un campo obligatorio"},
   s_usuario: {type: String, required: "Usuario no Ingresado"},
   s_contraseña: {type: String, required: "Contraseña no Ingresada"},
-  s_curso: {type: Object, required: "No se selecciono el curso vinculado"}
+  s_curso: {type: Schema.Types.ObjectId, ref: "curso", required: "No se selecciono el curso vinculado"}
 });
 
 var Acudiente = mongoose.model("Acudiente", Acudiente_schema);

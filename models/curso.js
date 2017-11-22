@@ -11,7 +11,7 @@ var Curso_schema = new Schema({
   s_descripcion: String,
   n_precio: {type: Number, required: "Valor es necesario"},
   s_telefono: {type: Number, required: "Necesario Numero de Contacto"},
-  s_entrenador: {type: Object, required: "Entrenador es Necerio"}
+  s_entrenador: {type: Schema.Types.ObjectId, ref: "entrenador", required: "Entrenador es Necerio"}
 });
 
 var Curso = mongoose.model("Curso", Curso_schema);
