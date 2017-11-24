@@ -24,5 +24,16 @@ block contenido
       li
         h4 Estudiante de la clase:
         a(href="/platform/estudiante/#{clase.i_estudiante}") Ver
+        
+  div(class="row")
+    div(class='6u$')
+      ul.actions
+        li
+          a(href="/platform/clase/#{clase._id}/edit", class="button") Editar
+    div(class='6u$')
+      ul.actions
+        li
+          form(action="/platform/clase/#{clase._id}?_method=DELETE", method="POST")
+            input.special(value='Eliminar', type='submit')
 
   include ../../template/footer.jade

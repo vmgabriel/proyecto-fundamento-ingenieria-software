@@ -21,5 +21,17 @@ block contenido
       li
         h4 Ciudad de la ciudad:
         p= sucursal.s_ciudad
+        
+        
+  div(class="row")
+    div(class='6u$')
+      ul.actions
+        li
+          a(href="/platform/sucursal/#{sucursal._id}/edit", class="button") Editar
+    div(class='6u$')
+      ul.actions
+        li
+          form(action="/platform/sucursal/#{sucursal._id}?_method=DELETE", method="POST")
+            input.special(value='Eliminar', type='submit')
 
   include ../../template/footer.jade

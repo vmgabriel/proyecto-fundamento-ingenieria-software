@@ -27,5 +27,17 @@ block contenido
       li
         h4 Descripcion de Sesion:
         p= sesion.s_descripcion_entrenamiento
+        
+        
+  div(class="row")
+    div(class='6u$')
+      ul.actions
+        li
+          a(href="/platform/sesion/#{sesion._id}/edit", class="button") Editar
+    div(class='6u$')
+      ul.actions
+        li
+          form(action="/platform/sesion/#{sesion._id}?_method=DELETE", method="POST")
+            input.special(value='Eliminar', type='submit')
 
   include ../../template/footer.jade

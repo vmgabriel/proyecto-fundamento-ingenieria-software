@@ -871,4 +871,259 @@ router.route("/acudiente/:id/edit")
     });
   });
 
+router.route("/clase/:id/edit")
+  .get(function(req, res){
+    Sesion.find({}, function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        Estudiante.find({}, function(err1, doc1){
+          if (err1)
+          {
+            console.log(err1);
+            res.redirect("platform/");
+          }
+          else
+          {
+            Clase.findById(req.params.id, function(err2, doc2){
+              if (err2)
+              {
+                console.log(err2);
+                res.redirect("platform/");
+              }
+              else
+              {
+                res.render("platform/clase/edit",{sesiones: doc, estudiantes: doc1, clase: doc2});
+              }
+            });
+          }
+        });
+      }
+    });
+  });
+
+router.route("/curso/:id/edit")
+  .get(function(req, res){
+    Entrenador.find({}, function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        Curso.findById(req.params.id, function(err1, doc1){
+          if (err1)
+          {
+            console.log(err1);
+            res.redirect("platform/");
+          }
+          else
+          {
+            res.render("platform/curso/edit",{curso: doc1, entrenadores: doc});
+          }
+        });
+      }
+    });
+  });
+
+router.route("/entrenador/:id/edit")
+  .get(function(req, res){
+    Sucursal.find({}, function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        Entrenador.findById(req.params.id, function(err1, doc1){
+          if (err1)
+          {
+            console.log(err1);
+            res.redirect("platform/");
+          }
+          else
+          {
+            res.render("platform/entrenador/edit",{sucursales: doc, entrenador: doc1});
+          }
+        });
+      }
+    });
+  });
+
+router.route("/estudiante/:id/edit")
+  .get(function(req, res){
+    Acudiente.find({}, function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        Estudiante.findById(req.params.id, function(err1, doc1){
+          if (err1)
+          {
+            console.log(err1);
+            res.redirect("platform/");
+          }
+          else
+          {
+            res.render("platform/estudiante/edit",{acudientes: doc, estudiante: doc1});
+          }
+        });
+      }
+    });
+  });
+
+router.route("/evento/:id/edit")
+  .get(function(req, res){
+      Evento.findById(req.params.id, function(err, doc){
+        if (err)
+        {
+          console.log(err);
+          res.redirect("platform/");
+        }
+        else
+        {
+          res.render("platform/evento/edit",{evento: doc});
+        }
+      });
+  });
+
+router.route("/inscripcion/:id/edit")
+  .get(function(req, res){
+      Evento.find({}, function(err, doc){
+        if (err)
+        {
+          console.log(err);
+          res.redirect("platform/");
+        }
+        else
+        {
+          Estudiante.find({}, function(err1, doc1){
+            if (err1)
+            {
+              console.log(err1);
+              res.redirect("platform/");
+            }
+            else
+            {
+              Inscripcion.findById(req.params.id, function(err2,doc2){
+                if (err2)
+                {
+                  console.log(err1);
+                  res.redirect("platform/");
+                }
+                else {
+                  res.render("platform/inscripcion/edit",{eventos: doc, estudiantes: doc1, inscripcion: doc2});
+                }
+              });
+            }
+          });
+        }
+      });
+  });
+
+router.route("/pago/:id/edit")
+  .get(function(req, res){
+    Curso.find({}, function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        Pago.findById(req.params.id, function(err1, doc1){
+          if (err1)
+          {
+            console.log(err1);
+            res.redirect("platform/");
+          }
+          else
+          {
+            res.render("platform/pago/edit",{cursos: doc, pago: doc1});
+          }
+        });
+      }
+    });
+  });
+
+
+router.route("/reporte/:id/edit")
+  .get(function(req, res){
+      Reporte.findById(req.params.id, function(err, doc){
+        if (err)
+        {
+          console.log(err);
+          res.redirect("platform/");
+        }
+        else
+        {
+          res.render("platform/reporte/edit",{reporte: doc});
+        }
+      });
+  });
+
+router.route("/sesion/:id/edit")
+  .get(function(req, res){
+      Sesion.findById(req.params.id, function(err, doc){
+        if (err)
+        {
+          console.log(err);
+          res.redirect("platform/");
+        }
+        else
+        {
+          res.render("platform/sesion/edit",{sesion: doc});
+        }
+      });
+  });
+
+router.route("/sucursal/:id/edit")
+  .get(function(req, res){
+      Sucursal.findById(req.params.id, function(err, doc){
+        if (err)
+        {
+          console.log(err);
+          res.redirect("platform/");
+        }
+        else
+        {
+          res.render("platform/sucursal/edit",{sucursal: doc});
+        }
+      });
+  });
+
+router.route("/torneo/:id/edit")
+  .get(function(req, res){
+    Estudiante.find({}, function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        Torneo.findById(req.params.id, function(err1, doc1){
+          if (err1)
+          {
+            console.log(err1);
+            res.redirect("platform/");
+          }
+          else
+          {
+            res.render("platform/torneo/edit",{estudiantes: doc, torneos: doc1});
+          }
+        });
+      }
+    });
+  });
+
 module.exports = router;

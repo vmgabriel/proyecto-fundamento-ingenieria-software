@@ -27,5 +27,16 @@ block contenido
       li
         h4 Entrenador del curso:
         a(href="/platform/entrenador/#{curso.s_entrenador}") Ver
+        
+  div(class="row")
+    div(class='6u$')
+      ul.actions
+        li
+          a(href="/platform/curso/#{curso._id}/edit", class="button") Editar
+    div(class='6u$')
+      ul.actions
+        li
+          form(action="/platform/curso/#{curso._id}?_method=DELETE", method="POST")
+            input.special(value='Eliminar', type='submit')
 
   include ../../template/footer.jade
