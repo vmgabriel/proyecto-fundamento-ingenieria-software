@@ -1,0 +1,34 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Datos de Inscripcion
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Los datos de la inscripcion seleccionado está aqui mencionado
+    
+    ul(class="alt")
+      li
+        h4 Tipo de inscripcion:
+        p= inscripcion.s_tipo
+      li
+        h4 Fecha de inscripcion:
+        p= inscripcion.s_fecha
+      li
+        h4 Direccion de inscripcion:
+        p= inscripcion.s_direccion
+      li
+        h4 Ciudad de inscripcion:
+        p= inscripcion.s_ciudad
+      li
+        h4 Viabilidad de inscripcion:
+        p= inscripcion.s_viabilidad
+      li
+        h4 Evento de la inscripcion:
+        a(href="/platform/evento/#{inscripcion.i_evento}") Ver
+      li
+        h4 Estudiante de la inscripcion:
+        a(href="/platform/estudiante/#{inscripcion.i_estudiante}") Ver
+
+  include ../../template/footer.jade

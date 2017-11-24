@@ -1,0 +1,83 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Nueva Inscripcio
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/inscripcion')
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="tipo") Ingrese Tipo de Inscripcion:
+          input(name='tipo', value='', placeholder="Tipo de Inscripcion", type='text')
+        div(clas="12u$")
+          label(for="fecha") Ingrese Fecha de Inscripcion:
+          input(id="fecha", class="fecha", name="fecha" ,type="date")
+        div(class='12u$')
+          label(for="direccion") Ingrese Direccion:
+          input(name='direccion', value='', placeholder='Direccion', type='text')
+        div(class='12u$')
+          label(for="ciudad") Ingrese Ciudad:
+          input(name='ciudad', value='', placeholder='Ciudad', type='text')
+        div(class="12u$")
+          label(for="Viabilidad") Ingrese Viabilidad:
+          textarea(id="Viabilidad" name="viabilidad" placeholder="Viabilidad" rows=6)
+        
+        .table-wrapper
+          h4 Seleccione Evento a Vincular
+          table.alt
+              thead
+                tr
+                  th Seleccionado
+                  th Nombre
+                  th Fecha
+                  th Direccion
+                  th Ciudad
+                  th Telefono
+              tbody
+                for evento in eventos
+                  tr
+                    td 
+                      input(id="#{evento._id}", value="#{evento._id}", checked='', name='evento', type='radio')
+                      label(for="#{evento._id}") .
+                    td= evento.s_nombre
+                    td= evento.d_fecha
+                    td= evento.s_direccion
+                    td= evento.s_ciudad
+                    td= evento.n_telefono
+                    
+        .table-wrapper
+          h4 Seleccione Estudiante
+          table.alt
+              thead
+                tr
+                  th Seleccion
+                  th Nit
+                  th Cedula
+                  th Nombre
+                  th Apellido
+                  th Correo
+                  th Colegio
+              tbody
+                for estudiante in estudiantes
+                  tr
+                    td 
+                      input(id="#{estudiante._id}", value="#{estudiante._id}", checked='', name='estudiante', type='radio')
+                      label(for="#{estudiante._id}") .
+                    td= estudiante.n_nit
+                    td= estudiante.n_cedula
+                    td= estudiante.s_nombre
+                    td= estudiante.s_apellido
+                    td= estudiante.s_correo
+                    td= estudiante.s_colegio
+        
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Registrar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade

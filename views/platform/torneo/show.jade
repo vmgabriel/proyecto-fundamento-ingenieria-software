@@ -1,0 +1,34 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Datos de Torneo
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Los datos del torneo seleccionado está aqui mencionado
+    
+    ul(class="alt")
+      li
+        h4 Nombre de torneo:
+        p= torneo.s_nombre
+      li
+        h4 Fecha de torneo:
+        p= torneo.d_fecha_torneo
+      li
+        h4 Ranking de torneo:
+        p= torneo.s_ranking_torneo
+      li
+        h4 Ciudad de torneo:
+        p= torneo.s_ciudad
+      li
+        h4 Pais de torneo:
+        p= torneo.s_pais
+      li
+        h4 Puesto de torneo:
+        p= torneo.s_puesto_torneo
+      li
+        h4 Estudiante de la torneo:
+        a(href="/platform/estudiante/#{torneo.i_estudiante}") Ver
+
+  include ../../template/footer.jade

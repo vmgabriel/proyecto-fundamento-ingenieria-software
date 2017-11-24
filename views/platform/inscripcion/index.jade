@@ -1,0 +1,36 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todos las Inscripciones
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Seleccione alguno para su posterior Seleccion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Tipo
+                th Fecha
+                th Direccion
+                th Ciudad
+                th Evento
+                th Estudiante
+                th Seleccion
+            tbody
+              for inscripcion in inscripciones
+                tr
+                  th= inscripcion.s_tipo
+                  th= inscripcion.s_fecha
+                  th= inscripcion.s_direccion
+                  th= inscripcion.s_ciudad
+                  th
+                    a(href="evento/#{inscripcion.i_evento}") Ver
+                  th
+                    a(href="estudiante/#{inscripcion.i_estudiante}") Ver
+                  th
+                    a(href="inscripcion/#{inscripcion._id}") Seleccionar
+
+  include ../../template/footer.jade

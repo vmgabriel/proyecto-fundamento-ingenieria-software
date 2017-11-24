@@ -10,6 +10,8 @@ var Pago = require("./models/pago").Pago;
 var Sesion = require("./models/sesion").Sesion;
 var Reporte = require("./models/reporte").Reporte;
 var Clase = require("./models/clase").Clase;
+var Inscripcion = require("./models/inscripcion").Inscripcion;
+var Torneo = require("./models/torneo").Torneo;
 
 var router = express.Router();
 
@@ -137,6 +139,46 @@ router.get("/clase/new", function(req, res){
         res.render("platform/clase/new", {sesiones:sesioness, estudiantes:eestudiantes});
       }
     });
+});
+
+router.get("/inscripcion/new", function(req, res){
+  let eventoss = []
+  Evento.find({},function(err, eeventos){
+    if (err || !eeventos)
+    {
+      console.log(err);
+      res.redirec("platform/");
+    }
+    else
+    {
+      eventoss=eeventos;
+    }
+    });
+    Estudiante.find({},function(err1, eestudiantes){
+      if (err1 || !eestudiantes)
+      {
+        console.log(err1);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/inscripcion/new", {eventos:eventoss, estudiantes:eestudiantes});
+      }
+    });
+});
+
+router.get("/torneo/new", function(req, res){
+  Estudiante.find({},function(err,doc){
+    if (err)
+    {
+      console.log(err)
+      res.redirec("platform/")
+    }
+    else
+    {
+      res.render("platform/torneo/new",{estudiantes:doc});
+    }
+  });
 });
 
 router.route("/sucursal")
@@ -496,6 +538,78 @@ router.route("/clase")
     });
 });
 
+router.route("/inscripcion")
+  .get(function(req, res){
+    Inscripcion.find({},function(err, doc)
+    {
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/inscripcion/index", {inscripciones: doc});
+      }
+    });
+})
+  .post(function(req, res){
+    let datos = {
+      s_tipo: req.body.tipo,
+      s_fecha: req.body.fecha,
+      s_viabilidad: req.body.viabilidad,
+      s_direccion: req.body.direccion,
+      s_ciudad: req.body.ciudad,
+      i_evento: req.body.evento,
+      i_estudiante: req.body.estudiante
+    };
+
+    let inscrip = new Inscripcion(datos);
+
+    inscrip.save().then(function(){
+      res.redirect("/platform/inscripcion/"+inscrip._id);
+    }, function(err){
+      console.log(String(err));
+      res.redirect("platform/");
+    });
+});
+
+router.route("/torneo")
+  .get(function(req, res){
+    Torneo.find({},function(err, doc)
+    {
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/torneo/index", {torneos: doc});
+      }
+    });
+})
+  .post(function(req, res){
+    let datos = {
+      s_nombre: req.body.nombre,
+      d_fecha_torneo: req.body.fecha,
+      s_ranking_torneo: req.body.ranking,
+      s_ciudad: req.body.ciudad,
+      s_pais: req.body.pais,
+      s_puesto_torneo: req.body.puesto,
+      i_estudiante: req.body.estudiante
+    };
+
+    let torneo = new Torneo(datos);
+
+    torneo.save().then(function(){
+      res.redirect("/platform/torneo/"+torneo._id);
+    }, function(err){
+      console.log(String(err));
+      res.redirect("platform/");
+    });
+});
+
 router.route("/sucursal/:id")
   .get(function(req, res){
     Sucursal.findById(req.params.id, function(err, doc){
@@ -508,23 +622,7 @@ router.route("/sucursal/:id")
         res.render("platform/sucursal/show",{sucursal:doc});
       }
     });
-})
-/*
-  .post(function(req, res){
-    let sucursal = new Sucursal({
-      s_nombre: req.body.nombre,
-      s_direccion: req.body.direccion,
-      i_cantidadCategorias: req.body.categorias,
-      s_ciudad: req.body.ciudad
-  });
-  sucursal.save().then(function(){
-    res.render("platform/envio_correcto");
-  }, function(err){
-    console.log(String(err));
-  });
-})*/;
-
-
+});
 
 router.route("/entrenador/:id")
   .get(function(req, res){
@@ -656,6 +754,36 @@ router.route("/clase/:id")
       else
       {
         res.render("platform/clase/show",{clase: doc});
+      }
+    });
+  });
+
+router.route("/inscripcion/:id")
+  .get(function(req, res){
+    Inscripcion.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/inscripcion/show",{inscripcion: doc});
+      }
+    });
+  });
+
+router.route("/torneo/:id")
+  .get(function(req, res){
+    Torneo.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/torneo/show",{torneo: doc});
       }
     });
   });

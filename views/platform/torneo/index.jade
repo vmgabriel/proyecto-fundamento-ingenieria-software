@@ -1,0 +1,35 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todos los Torneos
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Seleccione alguno para su posterior Seleccion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Nombre
+                th Fecha
+                th Ranking
+                th Ciudad
+                th Puesto
+                th Estudiante
+                th Seleccion
+            tbody
+              for torneo in torneos
+                tr
+                  th= torneo.s_nombre
+                  th= torneo.d_fecha_torneo
+                  th= torneo.s_ranking_torneo
+                  th= torneo.s_ciudad
+                  th= torneo.s_puesto_torneo
+                  th
+                    a(href="estudiante/#{torneo.i_estudiante}") Ver
+                  th
+                    a(href="torneo/#{torneo._id}") Seleccionar
+
+  include ../../template/footer.jade
