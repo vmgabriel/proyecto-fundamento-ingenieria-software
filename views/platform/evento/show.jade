@@ -1,0 +1,31 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Datos de Evento
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Los datos del Evento seleccionado está aqui mencionado
+    
+    ul(class="alt")
+      li
+        h4 Nombre del evento:
+        p= evento.s_nombre
+      li
+        h4 Fecha del evento:
+        p= evento.d_fecha
+      li
+        h4 Direccion del evento:
+        p= evento.s_direccion
+      li
+        h4 Ciudad del evento:
+        p= evento.s_ciudad
+      li
+        h4 Pais del evento:
+        p= evento.s_pais
+      li
+        h4 Telefono del evento:
+        p= evento.n_telefono
+        
+  include ../../template/footer.jade

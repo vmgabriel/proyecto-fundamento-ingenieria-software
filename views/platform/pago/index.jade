@@ -1,0 +1,33 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todos los Pagos
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Seleccione alguno para su posterior Utilizacion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Cantidad de Pago
+                th Fecha Maxima de Pago
+                th Tipo de Pago
+                th Descripcion
+                th Curso
+                th Seleccion
+            tbody
+              for pago in pagos
+                tr
+                  th= pago.n_cantidad_pago
+                  th= pago.d_fecha_maxima_pago
+                  th= pago.s_tipo_pago
+                  th= pago.s_descripcion
+                  th
+                    a(href="curso/#{pago.i_curso}") Ver
+                  th
+                    a(href="pago/#{pago._id}") Seleccionar
+
+  include ../../template/footer.jade

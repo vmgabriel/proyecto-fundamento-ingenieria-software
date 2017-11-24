@@ -1,0 +1,38 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Nuevo Evento
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/evento')
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="nombre") Ingrese Nombre:
+          input(name='nombre', value='', placeholder='Nombre', type='text')
+        div(clas="12u$")
+          label(for="fecha") Ingrese Fecha de evento:
+          input(id="fecha", class="fecha", name="fecha" ,type="date")
+        div(class='12u$')
+          label(for="direccion") Ingrese Direccion:
+          input(name='direccion', value='', placeholder='Direccion', type='text')
+        div(class='12u$')
+          label(for="telefono") Ingrese Telefono:
+          input(name='telefono', value='', placeholder='Telefono', type='text') 
+        div(class='12u$')
+          label(for="ciudad") Ingrese Ciudad:
+          input(name='ciudad', value='', placeholder='Ciudad', type='text')
+        div(class='12u$')
+          label(for="pais") Ingrese Pais:
+          input(name='pais', value='', placeholder='Pais', type='text')
+        
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Registrar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade

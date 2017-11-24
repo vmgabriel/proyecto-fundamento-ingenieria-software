@@ -1,0 +1,34 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todos los Eventos
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Seleccione alguno para su posterior Utilizacion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Nombre
+                th Fecha
+                th Direccion
+                th Ciudad
+                th Pais
+                th Telefono
+                th Seleccion
+            tbody
+              for evento in eventos
+                tr
+                  th= evento.s_nombre
+                  th= evento.d_fecha
+                  th= evento.s_direccion
+                  th= evento.s_ciudad
+                  th= evento.s_pais
+                  th= evento.n_telefono
+                  th
+                    a(href="evento/#{evento._id}") Seleccionar
+
+  include ../../template/footer.jade

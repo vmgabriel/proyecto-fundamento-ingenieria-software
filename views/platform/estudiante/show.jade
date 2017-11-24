@@ -1,0 +1,52 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Datos de Estudiante
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Los datos del estudiante seleccionado está aqui mencionado
+    
+    ul(class="alt")
+      li
+        h4 Nit del estudiante:
+        p= estudiante.n_nit
+      li
+        h4 Cedula del estudiante:
+        p= estudiante.n_cedula
+      li
+        h4 Nombre del estudiante:
+        p= estudiante.s_nombre
+      li
+        h4 Apellido del estudiante:
+        p= estudiante.s_apellido
+      li
+        h4 Colegio del estudiante:
+        p= estudiante.s_colegio
+      li
+        h4 Fecha de Nacimiento del estudiante:
+        p= estudiante.d_fecha_nacimiento
+      li
+        h4 Correo Electrico del estudiante:
+        p= estudiante.s_correo
+      li
+        h4 Tipo de Sangre del estudiante:
+        p= estudiante.s_tiposangre
+      li
+        h4 Ciudad del estudiante:
+        p= estudiante.s_ciudad
+      li
+        h4 Telefono del estudiante:
+        p= estudiante.n_telefono
+      li
+        h4 Alergias del estudiante:
+        p= estudiante.s_alergias
+      li
+        h4 Enfermedades del estudiante:
+        p= estudiante.s_enfermedades
+      li
+        h4 Acudiente del estudiante:
+        a(href="/platform/acudiente/#{estudiante.i_acudiente}") Ver
+
+  include ../../template/footer.jade

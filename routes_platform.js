@@ -4,6 +4,9 @@ var Sucursal = require("./models/sucursal").Sucursal;
 var Entrenador = require("./models/entrenador").Entrenador;
 var Curso = require("./models/curso").Curso;
 var Acudiente = require("./models/acudiente").Acudiente;
+var Estudiante = require("./models/estudiante").Estudiante;
+var Evento = require("./models/evento").Evento;
+var Pago = require("./models/pago").Pago;
 
 var router = express.Router();
 
@@ -53,6 +56,38 @@ router.get("/acudiente/new", function(req, res){
     else
     {
       res.render("platform/acudiente/new", {cursos:doc});
+    }
+  });
+});
+
+router.get("/estudiante/new", function(req, res){
+  Acudiente.find({},function(err, doc){
+    if (err || !doc)
+    {
+      console.log(err)
+      res.redirec("platform/")
+    }
+    else
+    {
+      res.render("platform/estudiante/new", {acudientes:doc});
+    }
+  });
+});
+
+router.get("/evento/new", function(req, res){
+  res.render("platform/evento/new");
+});
+
+router.get("/pago/new", function(req, res){
+  Curso.find({},function(err, doc){
+    if (err || !doc)
+    {
+      console.log(err)
+      res.redirec("platform/")
+    }
+    else
+    {
+      res.render("platform/pago/new", {cursos:doc});
     }
   });
 });
@@ -209,6 +244,112 @@ router.route("/acudiente")
     }
   });
 
+router.route("/estudiante")
+  .get(function(req, res){
+    Estudiante.find({},function(err, doc){
+      if (err || !doc)
+      {
+        console.log(err);
+        res.redirec("/platform");
+      }
+      else
+      {
+        res.render("platform/estudiante/index", {estudiantes: doc});
+      }
+    });
+  }).post(function(req, res){
+    let estudiante = new Estudiante({
+      n_nit: req.body.nit,
+      n_cedula: req.body.cedula,
+      s_nombre: req.body.nombre,
+      s_apellido: req.body.apellido,
+      s_colegio: req.body.colegio,
+      s_correo: req.body.correo,
+      s_ciudad: req.body.ciudad,
+      n_telefono: req.body.telefono,
+      s_tiposangre: req.body.cbtipo_sangre,
+      s_enfermedades: req.body.enfermedad,
+      d_fecha_nacimiento: req.body.fecha,
+      s_alergias: req.body.alergias,
+      i_acudiente: req.body.acudiente
+    });
+
+    estudiante.save().then(function(){
+      res.redirect("/platform/estudiante/"+estudiante._id);
+    },function(err){
+      console.log(err);
+      res.redirec("/platform");
+    });
+  });
+
+router.route("/evento")
+  .get(function(req, res){
+    Evento.find({},function(err, doc)
+    {
+      if (err)
+      {
+        res.send(err)
+      }
+      else
+      {
+        res.render("platform/evento/index", {eventos: doc});
+      }
+    });
+})
+  .post(function(req, res){
+    let datos = {
+      s_nombre: req.body.nombre,
+      d_fecha: req.body.fecha,
+      s_direccion: req.body.direccion,
+      s_ciudad: req.body.ciudad,
+      s_pais: req.body.pais,
+      n_telefono: req.body.telefono
+    };
+
+    let eve = new Evento(datos);
+
+    eve.save().then(function(){
+      res.redirect("/platform/evento/"+eve._id);
+    }, function(err){
+      console.log(String(err));
+    });
+});
+
+router.route("/pago")
+  .get(function(req, res){
+    Pago.find({},function(err, doc)
+    {
+      if (err)
+      {
+        res.send(err)
+      }
+      else
+      {
+        res.render("platform/pago/index", {pagos: doc});
+      }
+    });
+})
+  .post(function(req, res){
+    let datos = {
+      s_pago_banco: req.body.pago,
+      n_cantidad_pago: req.body.cantidad,
+      d_fecha_maxima_pago: req.body.fecha,
+      s_tipo_pago: req.body.tipo_pago,
+      s_descripcion: req.body.descripcion,
+      i_curso: req.body.curso
+    };
+
+    console.log(req.body.fecha);
+
+    let pago = new Pago(datos);
+
+    pago.save().then(function(){
+      res.redirect("/platform/pago/"+pago._id);
+    }, function(err){
+      console.log(String(err));
+    });
+});
+
 router.route("/sucursal/:id")
   .get(function(req, res){
     Sucursal.findById(req.params.id, function(err, doc){
@@ -282,5 +423,50 @@ router.route("/acudiente/:id")
       }
     });
   });
+
+router.route("/estudiante/:id")
+  .get(function(req, res){
+    Estudiante.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/estudiante/show",{estudiante:doc});
+      }
+    });
+  });
+
+router.route("/evento/:id")
+  .get(function(req, res){
+    Evento.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/evento/show",{evento:doc});
+      }
+    });
+  });
+
+  router.route("/pago/:id")
+    .get(function(req, res){
+      Pago.findById(req.params.id,function(err, doc){
+        if (err)
+        {
+          console.log(err);
+          res.redirec("platform/");
+        }
+        else
+        {
+          res.render("platform/pago/show",{pago:doc});
+        }
+      });
+    });
 
 module.exports = router;

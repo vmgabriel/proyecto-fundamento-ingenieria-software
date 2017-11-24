@@ -7,7 +7,6 @@ const tipo_sangre=['A+', 'A-', 'O+', 'O-', 'B+', 'B-', 'AB+', 'AB-'];
 const prueba_email = [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/, "Email no valido"];
 
 var Estudiante_schema = new Schema({
-  id: Numeric,
   n_nit: Number,
   n_cedula: Number,
   s_nombre: {type: String, required: "Nombre es Necesario"},

@@ -1,0 +1,39 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todos los Estudiantes
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Seleccione alguno para su posterior Utilizacion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Cedula
+                th Nit
+                th Nombre
+                th Apellido
+                th Fecha Nacimientos
+                th Correo
+                th Telefono
+                th estudiante
+                th Seleccion
+            tbody
+              for estudiante in estudiantes
+                tr
+                  th= estudiante.n_cedula
+                  th= estudiante.n_nit
+                  th= estudiante.s_nombre
+                  th= estudiante.s_apellido
+                  th= estudiante.d_fecha_nacimiento
+                  th= estudiante.s_correo
+                  th= estudiante.n_telefono
+                  th
+                    a(href="acudiente/#{estudiante.s_acudiente}") Ver
+                  th
+                    a(href="estudiante/#{estudiante._id}") Seleccionar
+
+  include ../../template/footer.jade

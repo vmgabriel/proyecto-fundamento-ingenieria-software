@@ -1,0 +1,32 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Datos de Pago
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Los datos del Pago seleccionado está aqui mencionado
+    
+    ul(class="alt")
+      li
+        h4 Nombre del Banco a Pagar:
+        p= pago.s_pago_banco
+      li
+        h4 Cantidad de Pago:
+        p= pago.n_cantidad_pago
+      li
+        h4 Fecha Maxima de Pago:
+        p= pago.d_fecha_maxima_pago
+      li
+        h4 Tipo de pago:
+        p= pago.s_tipo_pago
+      li
+        h4 Descripcion del pago:
+        p= pago.s_descripcion
+      li
+        h4 Curso del pago:
+        p
+          a(href="/platform/curso/#{pago.i_curso}") Ver
+        
+  include ../../template/footer.jade
