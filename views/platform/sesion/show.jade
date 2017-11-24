@@ -1,0 +1,31 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Datos de Sesion
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la sesion")
+      p Los datos de la sesion seleccionada está aqui mencionado
+    
+    ul(class="alt")
+      li
+        h4 Tipo de sesion:
+        p= sesion.s_tipo_entrenamiento
+      li
+        h4 Fecha Inicio de la sesion:
+        p= sesion.d_fecha_entrenamiento_inicio
+      li
+        h4 Fecha Fin de la sesion:
+        p= sesion.d_fecha_entrenamiento_fin
+      li
+        h4 Intensidad de Sesion:
+        p= sesion.s_intensidad
+      li
+        h4 Ciudad de la Sesion:
+        p= sesion.s_ciudad
+      li
+        h4 Descripcion de Sesion:
+        p= sesion.s_descripcion_entrenamiento
+
+  include ../../template/footer.jade

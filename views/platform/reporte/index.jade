@@ -1,0 +1,32 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todos los Reportes
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la reporte")
+      p Seleccione alguno para su posterior modificacion/eliminacion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Tipo
+                th Fecha Reporte
+                th Cantidad
+                th Banco
+                th Codigo
+                th Seleccion
+            tbody
+              for reporte in reportes
+                tr
+                  th= reporte.s_tipo_reporte
+                  th= reporte.d_fecha_reporte
+                  th= reporte.n_cantidad_reporte
+                  th= reporte.s_reporte_banco
+                  th= reporte.n_codigo_reporte
+                  th
+                    a(href="/platform/reporte/#{reporte._id}") Seleccionar
+
+  include ../../template/footer.jade

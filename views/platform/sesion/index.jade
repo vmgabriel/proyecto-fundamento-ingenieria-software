@@ -1,0 +1,30 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todas las Sesiones
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la sesion")
+      p Seleccione alguno para su posterior modificacion/eliminacion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Tipo
+                th Fecha Inicio
+                th Fecha Fin
+                th Intensidad
+                th Seleccion
+            tbody
+              for sesion in sesiones
+                tr
+                  th= sesion.s_tipo_entrenamiento
+                  th= sesion.d_fecha_entrenamiento_inicio
+                  th= sesion.d_fecha_entrenamiento_fin
+                  th= sesion.s_intensidad
+                  th
+                    a(href="/platform/sesion/#{sesion._id}") Seleccionar
+
+  include ../../template/footer.jade

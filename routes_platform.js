@@ -7,6 +7,9 @@ var Acudiente = require("./models/acudiente").Acudiente;
 var Estudiante = require("./models/estudiante").Estudiante;
 var Evento = require("./models/evento").Evento;
 var Pago = require("./models/pago").Pago;
+var Sesion = require("./models/sesion").Sesion;
+var Reporte = require("./models/reporte").Reporte;
+var Clase = require("./models/clase").Clase;
 
 var router = express.Router();
 
@@ -90,6 +93,50 @@ router.get("/pago/new", function(req, res){
       res.render("platform/pago/new", {cursos:doc});
     }
   });
+});
+
+router.get("/sesion/new", function(req, res){
+  res.render("platform/sesion/new");
+});
+
+router.get("/reporte/new", function(req, res){
+  Pago.find({},function(err, doc){
+    if (err || !doc)
+    {
+      console.log(err)
+      res.redirec("platform/")
+    }
+    else
+    {
+      res.render("platform/reporte/new", {pagos:doc});
+    }
+  });
+});
+
+router.get("/clase/new", function(req, res){
+  let sesioness = []
+  Sesion.find({},function(err, ssesiones){
+    if (err || !ssesiones)
+    {
+      console.log(err);
+      res.redirec("platform/");
+    }
+    else
+    {
+      sesioness=ssesiones;
+    }
+    });
+    Estudiante.find({},function(err1, eestudiantes){
+      if (err1 || !eestudiantes)
+      {
+        console.log(err1);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/clase/new", {sesiones:sesioness, estudiantes:eestudiantes});
+      }
+    });
 });
 
 router.route("/sucursal")
@@ -350,6 +397,105 @@ router.route("/pago")
     });
 });
 
+router.route("/sesion")
+  .get(function(req, res){
+    Sesion.find({},function(err, doc)
+    {
+      if (err)
+      {
+        res.send(err)
+      }
+      else
+      {
+        res.render("platform/sesion/index", { sesiones: doc});
+      }
+    });
+})
+  .post(function(req, res){
+    let datos = {
+      s_descripcion_entrenamiento: req.body.descripcion,
+      d_fecha_entrenamiento_inicio: req.body.fecha_inicio,
+      d_fecha_entrenamiento_fin: req.body.fecha_fin,
+      s_intensidad: req.body.cbintensidad,
+      s_ciudad: req.body.ciudad,
+      s_tipo_entrenamiento: req.body.tipo
+    };
+
+    let sesion = new Sesion(datos);
+
+    sesion.save().then(function(){
+      res.redirect("/platform/sesion/"+sesion._id);
+    }, function(err){
+      console.log(String(err));
+    });
+});
+
+router.route("/reporte")
+  .get(function(req, res){
+    Reporte.find({},function(err, doc)
+    {
+      if (err)
+      {
+        res.send(err)
+      }
+      else
+      {
+        res.render("platform/reporte/index", { reportes: doc});
+      }
+    });
+})
+  .post(function(req, res){
+    let datos = {
+      s_reporte_banco: req.body.nombre_banco,
+      n_cantidad_reporte: req.body.cantidad,
+      n_codigo_reporte: req.body.cod_reporte,
+      d_fecha_reporte: req.body.fecha,
+      s_tipo_reporte: req.body.tipo_reporte,
+      i_pago: req.body.pago
+    };
+
+    let reporte = new Reporte(datos);
+
+    reporte.save().then(function(){
+      res.redirect("/platform/reporte/"+reporte._id);
+    }, function(err){
+      console.log(String(err));
+    });
+});
+
+router.route("/clase")
+  .get(function(req, res){
+    Clase.find({},function(err, doc)
+    {
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/clase/index", { clases: doc});
+      }
+    });
+})
+  .post(function(req, res){
+    let datos = {
+      s_clase_tipo: req.body.tipo_clase,
+      d_clase_caracteristica: req.body.caracteristica,
+      s_ciudad: req.body.ciudad,
+      i_sesion: req.body.sesion,
+      i_estudiante: req.body.estudiante
+    };
+
+    let clase = new Clase(datos);
+
+    clase.save().then(function(){
+      res.redirect("/platform/clase/"+clase._id);
+    }, function(err){
+      console.log(String(err));
+    });
+});
+
 router.route("/sucursal/:id")
   .get(function(req, res){
     Sucursal.findById(req.params.id, function(err, doc){
@@ -454,19 +600,64 @@ router.route("/evento/:id")
     });
   });
 
-  router.route("/pago/:id")
-    .get(function(req, res){
-      Pago.findById(req.params.id,function(err, doc){
-        if (err)
-        {
-          console.log(err);
-          res.redirec("platform/");
-        }
-        else
-        {
-          res.render("platform/pago/show",{pago:doc});
-        }
-      });
+router.route("/pago/:id")
+  .get(function(req, res){
+    Pago.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/pago/show",{pago:doc});
+      }
     });
+  });
+
+router.route("/sesion/:id")
+  .get(function(req, res){
+    Sesion.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/sesion/show",{sesion:doc});
+      }
+    });
+  });
+
+router.route("/reporte/:id")
+  .get(function(req, res){
+    Reporte.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/reporte/show",{reporte:doc});
+      }
+    });
+  });
+
+router.route("/clase/:id")
+  .get(function(req, res){
+    Clase.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirec("platform/");
+      }
+      else
+      {
+        res.render("platform/clase/show",{clase: doc});
+      }
+    });
+  });
 
 module.exports = router;

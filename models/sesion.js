@@ -6,12 +6,12 @@ mongoose.connect('mongodb://localhost/Pagina_FUTPRO',{ useMongoClient: true });
 const intensidad=["Alta", "Mediana", "Baja"];
 
 var Sesion_schema = new Schema({
-  s_descripcion_entrenamiento: String,
-  d_fecha_entrenamiento_inicio: Date,
-  d_fecha_entrenamiento_fin: Date,
-  s_intensidad: String,
-  s_ciudad: String,
-  s_tipo_entrenamiento: String,
+  s_descripcion_entrenamiento: {type: String, required: "Descripcion Necesaria"},
+  d_fecha_entrenamiento_inicio: {type: Date, required: "Fecha Inicio Necesario"},
+  d_fecha_entrenamiento_fin: {type: Date, required: "Fecha Fin Necesario"},
+  s_intensidad: {type: String, required: "Intensidad es Necesario"},
+  s_ciudad: {type: String, required: "Ciudad es Necesario"},
+  s_tipo_entrenamiento: {type: String, required: "Tipo de Entrenamiento es Necesario"}
 });
 
 var Sesion = mongoose.model("Sesion", Sesion_schema);

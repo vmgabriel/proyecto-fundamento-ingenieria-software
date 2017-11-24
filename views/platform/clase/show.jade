@@ -1,0 +1,28 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Datos de Clase
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Los datos del curso seleccionado está aqui mencionado
+    
+    ul(class="alt")
+      li
+        h4 Tipo de clase:
+        p= clase.s_clase_tipo
+      li
+        h4 Ciudad de clase:
+        p= clase.s_ciudad
+      li
+        h4 Descripcion de la clase:
+        p= clase.d_clase_caracteristica
+      li
+        h4 Sesion de la clase:
+        a(href="/platform/sesion/#{clase.i_sesion}") Ver
+      li
+        h4 Estudiante de la clase:
+        a(href="/platform/estudiante/#{clase.i_estudiante}") Ver
+
+  include ../../template/footer.jade

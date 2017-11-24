@@ -1,0 +1,32 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Lista de Todos las Clases
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la Sucursal")
+      p Seleccione alguno para su posterior Seleccion
+      
+      .table-wrapper
+        table.alt
+            thead
+              tr
+                th Tipo de Clase
+                th Ciudad
+                th Sesion
+                th Estudiante
+                th Seleccion
+            tbody
+              for clase in clases
+                tr
+                  th= clase.s_clase_tipo
+                  th= clase.s_ciudad
+                  th
+                    a(href="sesion/#{clase.i_sesion}") Ver
+                  th
+                    a(href="estudiante/#{clase.i_estudiante}") Ver
+                  th
+                    a(href="clase/#{clase._id}") Seleccionar
+
+  include ../../template/footer.jade

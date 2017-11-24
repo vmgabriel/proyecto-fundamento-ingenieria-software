@@ -1,0 +1,32 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Datos de Reporte
+      img(class="redondo", src="/public/images/rol.jpg" alt="Imagen de la reporte")
+      p Los datos del reporte seleccionada está aqui mencionado
+    
+    ul(class="alt")
+      li
+        h4 Tipo de reporte:
+        p= reporte.s_tipo_reporte
+      li
+        h4 Fecha de reporte:
+        p= reporte.d_fecha_reporte
+      li
+        h4 Banco de reporte:
+        p= reporte.s_reporte_banco
+      li
+        h4 Cantidad de reporte:
+        p= reporte.n_cantidad_reporte
+      li
+        h4 Codigo de reporte:
+        p= reporte.n_codigo_reporte
+      li
+        h4 Pago de Reporte:
+        p
+          a(href="/platform/pago/#{reporte.i_pago}") Ver
+
+  include ../../template/footer.jade
