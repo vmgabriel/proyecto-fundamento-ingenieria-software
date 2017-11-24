@@ -57,5 +57,16 @@ block contenido
       li
         h4 Curso Vinculado del acudiente:
         a(href="/platform/curso/#{acudiente.s_curso}") Ver
+        
+    div(class="row")
+      div(class='6u$')
+        ul.actions
+          li
+            a(href="/platform/acudiente/#{acudiente._id}/edit", class="button") Editar
+      div(class='6u$')
+        ul.actions
+          li
+            form(action="/platform/acudiente/#{acudiente._id}?_method=DELETE", method="POST")
+              input.special(value='Eliminar', type='submit')
 
   include ../../template/footer.jade

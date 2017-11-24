@@ -1,0 +1,102 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Modificar curso
+      p Modifique los datos solicitados para actualizarlos a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/acudiente/#{acudiente._id}?_method=PUT')
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="cedula") Ingrese Cedula:
+          input(name='cedula', value='#{acudiente.n_ced}', placeholder="Cedula", type='text')
+        div(class='12u$')
+          label(for="nombre") Ingrese Nombre:
+          input(name='nombre', value='#{acudiente.s_nombre}', placeholder='Nombre', type='text')
+        div(class='12u$')
+          label(for="apellido") Ingrese Apellido:
+          input(name='apellido', value='#{acudiente.s_apellido}', placeholder='Apellido', type='text')
+        div(clas="12u$")
+          label(for="fecha_n") Ingrese Fecha de Nacimiento:
+          input(id="fecha_n", class="fecha", name="fecha",type="date", value="#{acudiente.d_fecha_nacimiento}")
+        div(class='12u$')
+          label(for="correo") Ingrese Correo:
+          input(name='correo', value='#{acudiente.s_correo}', placeholder='Correo', type='email')
+        div(class='12u$')
+          label(for="creencia") Ingrese Creencia Religiosa:
+          input(name='creencia', value='#{acudiente.s_creencia_religiosa}', placeholder='Creencia Religiosa', type='text')
+        div(class='12u$')
+          label(for="direccion") Ingrese Direccion:
+          input(name='direccion', value='#{acudiente.s_direccion}', placeholder='Direccion', type='text')
+        div(class='12u$')
+          label(for="eps") Ingrese EPS:
+          input(name='eps', value='#{acudiente.s_eps}', placeholder='EPS', type='text')
+        div(class='12u$')
+          label(for="nombre_empresa") Ingrese Nombre Empresa:
+          input(name='nombre_empresa', value='#{acudiente.s_nombre_empresa}', placeholder='Nombre Empresa', type='text')
+        div(class='12u$')
+          label(for="telefono") Ingrese Telefono:
+          input(name='telefono', value='#{acudiente.n_telefono}', placeholder='Telefono', type='text')  
+        div(class='12u$')
+          label(for="telefono_empresa") Ingrese Telefono Empresa:
+          input(name='telefono_empresa', value='#{acudiente.n_telefono_empresa}', placeholder='Telefono Empresa', type='text')
+        div(class='12u$')
+          label(for="prestacion_social") Ingrese Prestacion Social:
+          input(name='prestacion_social', value='#{acudiente.s_tipo_prestacionsocial}', placeholder='Prestacion Social', type='text')
+        div(class='12u$')
+          label(for="pais") Ingrese Pais:
+          input(name='pais', value='#{acudiente.s_pais}', placeholder='Pais', type='text')
+        div(class='12u$')
+          label(for="cbtipo_sangre") Seleccione el Tipo de Sangre:
+          div(class="select-wrapper")
+            select(id="cbtipo_sangre" name="cbtipo_sangre")
+              option(value="A+") A+
+              option(value="A-") A-
+              option(value="B+") B+
+              option(value="B-") B-
+              option(value="O+") O+
+              option(value="O-") O-
+              option(value="AB+") AB+
+              option(value="AB-") AB-
+        div(class='12u$')
+          label(for="usuario") Ingrese Usuario:
+          input(name='usuario', value='#{acudiente.s_usuario}', placeholder='Usuario', type='text')
+        div(class='12u$')
+          label(for="contraseña") Ingrese Contraseña:
+          input(name='contraseña', value='', placeholder='Contraseña', type='password')
+        div(class='12u$')
+          label(for="contraseñar") Ingrese Repita Contraseña:
+          input(name='contraseñar', value='', placeholder='Repita Contraseña', type='password')
+        div(class="12u$")
+          label(for="descripcion") Ingrese Descripcion:
+          textarea(id="descripcion" name="descripcion" placeholder="Descripcion" rows=6 value="#{acudiente.s_comentarios}")
+        
+        .table-wrapper
+          h4 Seleccione Curso a Vincular
+          table.alt
+              thead
+                tr
+                  th Seleccionado
+                  th Nombre
+                  th Categoria
+                  th Telefono
+              tbody
+                for curso in cursos
+                  tr
+                    td 
+                      input(id="#{curso._id}", value="#{curso._id}", checked='', name='curso', type='radio')
+                      label(for="#{curso._id}") .
+                    td= curso.s_nombre
+                    td= curso.s_categoria
+                    td= curso.s_telefono
+        
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Modificar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade

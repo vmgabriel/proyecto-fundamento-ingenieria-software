@@ -8,6 +8,8 @@ var Entrenador = require("./models/entrenador").Entrenador;
 var Sucursal = require("./models/sucursal").Sucursal;
 var Acudiente = require("./models/acudiente").Acudiente;
 
+var methodOverride = require("method-override");
+
 var router_platform = require("./routes_platform");
 var router_app = require("./routes_app");
 var session_middleware = require("./middlewares/session");
@@ -20,6 +22,8 @@ app.use("/public" ,express.static('public'));
 
 app.use(bodyParser.json()); //Para peticiones application/json
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(methodOverride("_method"));
 
 //Define el comportamiento de las sesiones
 app.use(cookieSession({

@@ -28,7 +28,7 @@ router.get("/entrenador/new", function(req, res){
     if (err)
     {
       console.log(err)
-      res.redirec("platform/")
+      res.redirect("platform/")
     }
     else
     {
@@ -42,7 +42,7 @@ router.get("/curso/new", function(req, res){
     if (err)
     {
       console.log(err)
-      res.redirec("platform/")
+      res.redirect("platform/")
     }
     else
     {
@@ -56,7 +56,7 @@ router.get("/acudiente/new", function(req, res){
     if (err || !doc)
     {
       console.log(err)
-      res.redirec("platform/")
+      res.redirect("platform/")
     }
     else
     {
@@ -70,7 +70,7 @@ router.get("/estudiante/new", function(req, res){
     if (err || !doc)
     {
       console.log(err)
-      res.redirec("platform/")
+      res.redirect("platform/")
     }
     else
     {
@@ -88,7 +88,7 @@ router.get("/pago/new", function(req, res){
     if (err || !doc)
     {
       console.log(err)
-      res.redirec("platform/")
+      res.redirect("platform/")
     }
     else
     {
@@ -106,7 +106,7 @@ router.get("/reporte/new", function(req, res){
     if (err || !doc)
     {
       console.log(err)
-      res.redirec("platform/")
+      res.redirect("platform/")
     }
     else
     {
@@ -121,7 +121,7 @@ router.get("/clase/new", function(req, res){
     if (err || !ssesiones)
     {
       console.log(err);
-      res.redirec("platform/");
+      res.redirect("platform/");
     }
     else
     {
@@ -132,7 +132,7 @@ router.get("/clase/new", function(req, res){
       if (err1 || !eestudiantes)
       {
         console.log(err1);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -147,7 +147,7 @@ router.get("/inscripcion/new", function(req, res){
     if (err || !eeventos)
     {
       console.log(err);
-      res.redirec("platform/");
+      res.redirect("platform/");
     }
     else
     {
@@ -158,7 +158,7 @@ router.get("/inscripcion/new", function(req, res){
       if (err1 || !eestudiantes)
       {
         console.log(err1);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -172,7 +172,7 @@ router.get("/torneo/new", function(req, res){
     if (err)
     {
       console.log(err)
-      res.redirec("platform/")
+      res.redirect("platform/")
     }
     else
     {
@@ -245,11 +245,11 @@ router.route("/entrenador")
         res.redirect("/platform/entrenador/"+entrenador._id);
       },function(err){
         console.log(err);
-        res.redirec("/platform");
+        res.redirect("/platform");
       });
     }
     else {
-      res.redirec("/platform");
+      res.redirect("/platform");
     }
 });
 
@@ -280,7 +280,7 @@ router.route("/curso")
       res.redirect("/platform/curso/"+curso._id);
     },function(err){
       console.log(err);
-      res.redirec("/platform");
+      res.redirect("/platform");
     });
   });
 
@@ -290,7 +290,7 @@ router.route("/acudiente")
       if (err || !doc)
       {
         console.log(err);
-        res.redirec("/platform");
+        res.redirect("/platform");
       }
       else
       {
@@ -321,15 +321,15 @@ router.route("/acudiente")
         s_curso: req.body.curso
       });
       acudiente.save().then(function(){
-        res.redirec("platform/acudiente/"+acudiente._id);
+        res.redirect("/platform/acudiente/"+acudiente._id);
       },function(err){
         console.log(err);
-        res.redirec("/platform");
+        res.redirect("/platform");
       });
     }
     else {
       console.log("Contraseña no es igual")
-      res.redirec("platform/")
+      res.redirect("platform/")
     }
   });
 
@@ -339,7 +339,7 @@ router.route("/estudiante")
       if (err || !doc)
       {
         console.log(err);
-        res.redirec("/platform");
+        res.redirect("/platform");
       }
       else
       {
@@ -367,7 +367,7 @@ router.route("/estudiante")
       res.redirect("/platform/estudiante/"+estudiante._id);
     },function(err){
       console.log(err);
-      res.redirec("/platform");
+      res.redirect("/platform");
     });
   });
 
@@ -512,7 +512,7 @@ router.route("/clase")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -545,7 +545,7 @@ router.route("/inscripcion")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -581,7 +581,7 @@ router.route("/torneo")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -616,7 +616,7 @@ router.route("/sucursal/:id")
       if (err)
       {
         console.log("Sucursal con ese ID no existe");
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else {
         res.render("platform/sucursal/show",{sucursal:doc});
@@ -629,7 +629,7 @@ router.route("/entrenador/:id")
     Entrenador.findById(req.params.id,function(err, doc){
       if (err)
       {
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -644,7 +644,7 @@ router.route("/curso/:id")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -654,16 +654,73 @@ router.route("/curso/:id")
   });
 
 router.route("/acudiente/:id")
-  .get(function(req, res){
+  .put(function(req, res){
+    Acudiente.findById(req.params.id,function(err, acudiente){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        if (req.body.constraseña == req.body.rcontraseña)
+        {
+          acudiente.n_ced = req.body.cedula,
+          acudiente.s_nombre = req.body.nombre,
+          acudiente.d_fecha_nacimiento = req.body.fecha,
+          acudiente.s_apellido = req.body.apellido,
+          acudiente.s_comentarios = req.body.descripcion,
+          acudiente.s_correo = req.body.correo,
+          acudiente.s_creencia_religiosa = req.body.creencia,
+          acudiente.s_direccion = req.body.direccion,
+          acudiente.s_eps = req.body.eps,
+          acudiente.s_nombre_empresa = req.body.nombre_empresa,
+          acudiente.n_telefono = req.body.telefono,
+          acudiente.n_telefono_empresa = req.body.telefono_empresa,
+          acudiente.s_tipo_prestacionsocial = req.body.prestacion_social,
+          acudiente.s_pais = req.body.pais,
+          acudiente.s_tiposangre = req.body.cbtipo_sangre,
+          acudiente.s_usuario = req.body.usuario,
+          acudiente.s_contraseña = req.body.contraseña,
+          acudiente.s_curso = req.body.curso
+          acudiente.save(function(err){
+            if (!err)
+            {
+              res.render("platform/acudiente/show",{acudiente:acudiente});
+            }
+            else {
+              res.render("platform/acudiente/"+acudiente._id+"/edit", {acudiente: acudiente});
+            }
+          });
+        }
+        else {
+          console.log("Contraseñas no coinciden");
+          res.redirect("platform/");
+        }
+      }
+    });
+  }).get(function(req, res){
     Acudiente.findById(req.params.id,function(err, doc){
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
         res.render("platform/acudiente/show",{acudiente:doc});
+      }
+    });
+  }).delete(function(req, res){
+    Acudiente.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/acudiente/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/acudiente");
       }
     });
   });
@@ -674,7 +731,7 @@ router.route("/estudiante/:id")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -689,7 +746,7 @@ router.route("/evento/:id")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -704,7 +761,7 @@ router.route("/pago/:id")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -719,7 +776,7 @@ router.route("/sesion/:id")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -734,7 +791,7 @@ router.route("/reporte/:id")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -749,7 +806,7 @@ router.route("/clase/:id")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -764,7 +821,7 @@ router.route("/inscripcion/:id")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
@@ -779,11 +836,37 @@ router.route("/torneo/:id")
       if (err)
       {
         console.log(err);
-        res.redirec("platform/");
+        res.redirect("platform/");
       }
       else
       {
         res.render("platform/torneo/show",{torneo: doc});
+      }
+    });
+  });
+
+//Editar
+router.route("/acudiente/:id/edit")
+  .get(function(req, res){
+    Curso.find({}, function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        Acudiente.findById(req.params.id, function(err1, doc1){
+          if (err1)
+          {
+            console.log(err1);
+            res.redirect("platform/");
+          }
+          else
+          {
+            res.render("platform/acudiente/edit",{acudiente: doc1, cursos: doc});
+          }
+        });
       }
     });
   });
