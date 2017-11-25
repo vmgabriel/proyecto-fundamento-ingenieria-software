@@ -1018,7 +1018,35 @@ router.route("/clase/:id")
   });
 
 router.route("/inscripcion/:id")
-  .get(function(req, res){
+  .put(function(req, res){
+    Inscripcion.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        doc.s_tipo = req.body.tipo,
+        doc.s_fecha = req.body.fecha,
+        doc.s_viabilidad = req.body.viabilidad,
+        doc.s_direccion = req.body.direccion,
+        doc.s_ciudad = req.body.ciudad,
+        doc.i_evento = req.body.evento,
+        doc.i_estudiante = req.body.estudiante
+        doc.save(function(err1){
+          if (!err1)
+          {
+            res.render("platform/inscripcion/show", {inscripcion: doc});
+          }
+          else
+          {
+            res.redirect("platform/inscripcion/"+doc._id+"/edit");
+          }
+        });
+      }
+    });
+  }).get(function(req, res){
     Inscripcion.findById(req.params.id,function(err, doc){
       if (err)
       {
@@ -1028,6 +1056,18 @@ router.route("/inscripcion/:id")
       else
       {
         res.render("platform/inscripcion/show",{inscripcion: doc});
+      }
+    });
+  }).delete(function(req, res){
+    Inscripcion.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/inscripcion/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/inscripcion");
       }
     });
   });

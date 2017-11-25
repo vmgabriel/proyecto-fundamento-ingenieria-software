@@ -4,26 +4,26 @@ block contenido
 
   div(class="container")
     header(class="major special")
-      h2 Nueva Inscripcion
+      h2 Modificar Inscripcion
       p Ingrese los datos solicitados para ingresarlo a la base de datos
     h3 Formulario
-    form(method='POST', action='/platform/inscripcion')
+    form(method='POST', action='/platform/inscripcion/#{inscripcion._id}?_method=PUT')
       .row.uniform(class='50%')
         div(class='12u$')
           label(for="tipo") Ingrese Tipo de Inscripcion:
-          input(name='tipo', value='', placeholder="Tipo de Inscripcion", type='text')
+          input(name='tipo', value='#{inscripcion.s_tipo}', placeholder="Tipo de Inscripcion", type='text')
         div(clas="12u$")
           label(for="fecha") Ingrese Fecha de Inscripcion:
-          input(id="fecha", class="fecha", name="fecha" ,type="date")
+          input(id="fecha", class="fecha", name="fecha" ,type="date", value="#{inscripcion.s_fecha}")
         div(class='12u$')
           label(for="direccion") Ingrese Direccion:
-          input(name='direccion', value='', placeholder='Direccion', type='text')
+          input(name='direccion', value='#{inscripcion.s_direccion}', placeholder='Direccion', type='text')
         div(class='12u$')
           label(for="ciudad") Ingrese Ciudad:
-          input(name='ciudad', value='', placeholder='Ciudad', type='text')
+          input(name='ciudad', value='#{inscripcion.s_ciudad}', placeholder='Ciudad', type='text')
         div(class="12u$")
           label(for="Viabilidad") Ingrese Viabilidad:
-          textarea(id="Viabilidad" name="viabilidad" placeholder="Viabilidad" rows=6)
+          textarea(id="Viabilidad" name="viabilidad" placeholder="Viabilidad" rows=6 value="#{inscripcion.s_viabilidad}")
         
         .table-wrapper
           h4 Seleccione Evento a Vincular
@@ -76,7 +76,7 @@ block contenido
         div(class='12u$')
           ul.actions
             li
-              input.special(value='Registrar', type='submit')
+              input.special(value='Modificar', type='submit')
             li
               input(value='Borrar', type='reset')
 
