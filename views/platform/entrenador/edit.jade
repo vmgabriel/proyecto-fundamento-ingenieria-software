@@ -1,0 +1,53 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Modificar Entrenador
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/entrenador/#{entrenador._id}?_method=PUT')
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="cedula") Ingrese Cedula:
+          input(name='cedula', value='#{entrenador.n_ced}', placeholder="Cedula", type='text')
+        div(class='12u$')
+          label(for="nombre") Ingrese Nombre:
+          input(name='nombre', value='#{entrenador.s_nombre}', placeholder='Nombre', type='text')
+        div(class='12u$')
+          label(for="apellido") Ingrese Apellido:
+          input(name='apellido', value='#{entrenador.s_apellido}', placeholder='Apellido', type='text')
+        div(class='12u$')
+          label(for="correo") Ingrese Correo:
+          input(name='correo', value='#{entrenador.s_correo}', placeholder='Correo', type='email')
+        div(class='12u$')
+          label(for="telefono") Ingrese Telefono:
+          input(name='telefono', value='#{entrenador.n_telefono}', placeholder='Telefono', type='text')
+        div(class='12u$')
+          label(for="usuario") Ingrese Usuario:
+          input(name='usuario', value='#{entrenador.s_usuario}', placeholder='Usuario', type='text')
+        div(class='12u$')
+          label(for="contraseña") Ingrese Contraseña:
+          input(name='contraseña', value='', placeholder='Contraseña', type='password')
+        div(class='12u$')
+          label(for="contraseñar") Ingrese Repita Contraseña:
+          input(name='contraseñar', value='', placeholder='Repita Contraseña', type='password')
+        div(class='12u$')
+          label(for="cbsucursal") Seleccione la sucursal:
+          div(class="select-wrapper")
+            select(id="cbsucursal" name="cbsucursal")
+              for sucursal in sucursales
+                option(value="#{sucursal._id}")= sucursal.s_nombre
+          
+        div(class="12u$")
+          label(for="descripcion") Ingrese Descripcion:
+          textarea(id="descripcion" name="descripcion" placeholder="Descripcion" rows=6 value='#{entrenador.s_descripcion}')
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Modificar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade

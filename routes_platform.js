@@ -629,11 +629,52 @@ router.route("/entrenador/:id")
     Entrenador.findById(req.params.id,function(err, doc){
       if (err)
       {
+        console.log(err);
         res.redirect("platform/");
       }
       else
       {
         res.render("platform/entrenador/show",{entrenador:doc});
+      }
+    });
+  }).put(function(req, res){
+    Entrenador.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else {
+        doc.n_ced = req.body.cedula,
+        doc.s_usuario = req.body.usuario,
+        doc.s_nombre = req.body.nombre,
+        doc.s_apellido = req.body.apellido,
+        doc.s_descripcion = req.body.descripcion,
+        doc.s_correo = req.body.correo,
+        doc.n_telefono = req.body.telefono,
+        doc.s_contraseña = req.body.contraseña,
+        doc.s_sucursal = req.body.cbsucursal
+        doc.save(function(err1){
+          if (!err1)
+          {
+            res.render("platform/entrenador/show", {entrenador: doc});
+          }
+          else {
+            res.redirect("platform/entrenador/"+doc._id+"/edit");
+          }
+        });
+      }
+    });
+  }).delete(function(req, res){
+    Entrenador.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/entrenador/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/entrenador");
       }
     });
   });
@@ -773,6 +814,51 @@ router.route("/estudiante/:id")
       else
       {
         res.render("platform/estudiante/show",{estudiante:doc});
+      }
+    });
+  }).put(function(req, res){
+    Estudiante.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        doc.n_nit = req.body.nit,
+        doc.n_cedula = req.body.cedula,
+        doc.s_nombre = req.body.nombre,
+        doc.s_apellido = req.body.apellido,
+        doc.s_colegio = req.body.colegio,
+        doc.s_correo = req.body.correo,
+        doc.s_ciudad = req.body.ciudad,
+        doc.n_telefono = req.body.telefono,
+        doc.s_tiposangre = req.body.cbtipo_sangre,
+        doc.s_enfermedades = req.body.enfermedad,
+        doc.d_fecha_nacimiento = req.body.fecha,
+        doc.s_alergias = req.body.alergias,
+        doc.i_acudiente = req.body.acudiente
+        doc.save(function(err1){
+          if (!err1)
+          {
+            res.render("platform/estudiante/show", {estudiante: doc});
+          }
+          else {
+            res.redirect("/platform/estudiante/"+doc._id+"/edit");
+          }
+        })
+      }
+    });
+  }).delete(function(req, res){
+    Estudiante.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/estudiante/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/estudiante");
       }
     });
   });

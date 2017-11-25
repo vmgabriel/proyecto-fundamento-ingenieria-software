@@ -1,0 +1,86 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Modificar Estudiante
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/estudiante/#{estudiante._id}?_method=PUT')
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="cedula") Ingrese Cedula:
+          input(name='cedula', value='#{estudiante.n_cedula}', placeholder="Cedula", type='text')
+        div(class='12u$')
+          label(for="nit") Ingrese Nit:
+          input(name='nit', value='#{estudiante.n_nit}', placeholder="nit", type='text')
+        div(class='12u$')
+          label(for="nombre") Ingrese Nombre:
+          input(name='nombre', value='#{estudiante.s_nombre}', placeholder='Nombre', type='text')
+        div(class='12u$')
+          label(for="apellido") Ingrese Apellido:
+          input(name='apellido', value='#{estudiante.s_apellido}', placeholder='Apellido', type='text')
+        div(clas="12u$")
+          label(for="fecha_n") Ingrese Fecha de Nacimiento:
+          input(id="fecha_n", class="fecha", name="fecha" ,type="date" value="#{estudiante.d_fecha_nacimiento}")
+        div(class='12u$')
+          label(for="correo") Ingrese Correo:
+          input(name='correo', value='#{estudiante.s_correo}', placeholder='Correo', type='email')
+        div(class='12u$')
+          label(for="colegio") Ingrese Colegio/Universidad:
+          input(name='colegio', value='#{estudiante.s_colegio}', placeholder='Colegio', type='text')
+        div(class='12u$')
+          label(for="telefono") Ingrese Telefono:
+          input(name='telefono', value='#{estudiante.n_telefono}', placeholder='Telefono', type='text') 
+        div(class='12u$')
+          label(for="ciudad") Ingrese Ciudad:
+          input(name='ciudad', value='#{estudiante.s_ciudad}' #{estudiante.}, placeholder='Ciudad', type='text')
+        div(class='12u$')
+          label(for="cbtipo_sangre") Seleccione el Tipo de Sangre:
+          div(class="select-wrapper")
+            select(id="cbtipo_sangre" name="cbtipo_sangre")
+              option(value="A+") A+
+              option(value="A-") A-
+              option(value="B+") B+
+              option(value="B-") B-
+              option(value="O+") O+
+              option(value="O-") O-
+              option(value="AB+") AB+
+              option(value="AB-") AB-
+        div(class="12u$")
+          label(for="enfermedad") Ingrese Enfermedades:
+          textarea(id="enfermedad" name="enfermedad" placeholder="Enfermedades" rows=6 value="#{estudiante.s_enfermedades}")
+        div(class="12u$")
+          label(for="alergias") Ingrese Alergias:
+          textarea(id="alergias" name="alergias" placeholder="Alergias" rows=6 value="#{estudiante.s_alergias}")
+        
+        .table-wrapper
+          h4 Seleccione acudiente a Vincular
+          table.alt
+              thead
+                tr
+                  th Seleccionado
+                  th Cedula
+                  th Nombre
+                  th Apellido
+                  th Correo
+              tbody
+                for acudiente in acudientes
+                  tr
+                    td 
+                      input(id="#{acudiente._id}", value="#{acudiente._id}", checked='', name='acudiente', type='radio')
+                      label(for="#{acudiente._id}")
+                    td= acudiente.n_ced
+                    td= acudiente.s_nombre
+                    td= acudiente.s_apellido
+                    td= acudiente.s_correo
+        
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Modificar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade
