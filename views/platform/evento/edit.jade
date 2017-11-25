@@ -1,0 +1,38 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Modificar Evento
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/evento/#{evento._id}?_method=PUT')
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="nombre") Ingrese Nombre:
+          input(name='nombre', value='#{evento.s_nombre}', placeholder='Nombre', type='text')
+        div(clas="12u$")
+          label(for="fecha") Ingrese Fecha de evento:
+          input(id="fecha", class="fecha", name="fecha" ,type="date" value="#{evento.d_fecha}")
+        div(class='12u$')
+          label(for="direccion") Ingrese Direccion:
+          input(name='direccion', value='#{evento.s_direccion}', placeholder='Direccion', type='text')
+        div(class='12u$')
+          label(for="telefono") Ingrese Telefono:
+          input(name='telefono', value='#{evento.n_telefono}', placeholder='Telefono', type='text') 
+        div(class='12u$')
+          label(for="ciudad") Ingrese Ciudad:
+          input(name='ciudad', value='#{evento.s_ciudad}', placeholder='Ciudad', type='text')
+        div(class='12u$')
+          label(for="pais") Ingrese Pais:
+          input(name='pais', value='#{evento.s_pais}', placeholder='Pais', type='text')
+        
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Modificar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade

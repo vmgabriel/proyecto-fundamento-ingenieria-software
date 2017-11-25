@@ -876,6 +876,46 @@ router.route("/evento/:id")
         res.render("platform/evento/show",{evento:doc});
       }
     });
+  }).put(function(req, res){
+    Evento.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        doc.s_nombre = req.body.nombre,
+        doc.d_fecha = req.body.fecha,
+        doc.s_direccion = req.body.direccion,
+        doc.s_ciudad = req.body.ciudad,
+        doc.s_pais = req.body.pais,
+        doc.n_telefono = req.body.telefono
+        doc.save(function(err1){
+          if(err1)
+          {
+            console.log(err1);
+            res.redirect("/platform/evento/"+req.params.id);
+          }
+          else
+          {
+            res.redirect("/platform/evento");
+          }
+        });
+      }
+    });
+  }).delete(function(req, res){
+    Evento.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/evento/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/evento");
+      }
+    });
   });
 
 router.route("/pago/:id")
