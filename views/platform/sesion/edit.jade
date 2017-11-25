@@ -1,0 +1,43 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Modificar Sesion
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/sesion/#{sesion._id}?_method=PUT')
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="tipo") Ingrese Tipo de Entrenamiento:
+          input(name='tipo', value='#{sesion.s_tipo_entrenamiento}', placeholder='Tipo Entrenamiento', type='text')
+        div(clas="12u$")
+          label(for="fecha_inicio") Ingrese Fecha Inicio de Entrenamiento:
+          input(id="fecha_inicio", class="fecha", name="fecha_inicio", type="date", value="#{sesion.d_fecha_entrenamiento_inicio}")
+        div(clas="12u$")
+          label(for="fecha_fin") Ingrese Fecha Fin de Entrenamiento:
+          input(id="fecha_fin", class="fecha", name="fecha_fin", type="date", value="#{sesion.d_fecha_entrenamiento_fin}")
+        div(class='12u$')
+          label(for="cbintensidad") Seleccione la Intensidad de Entrenamiento:
+          div(class="select-wrapper")
+            select(id="cbintensidad" name="cbintensidad")
+              option(value="Baja") Baja
+              option(value="Media") Media
+              option(value="Alta") Alta
+              option(value="Profesional") Profesional
+        div(class='12u$')
+          label(for="ciudad") Ingrese Ciudad:
+          input(name='ciudad', value='#{sesion.s_ciudad}', placeholder='Ciudad', type='text')
+        div(class="12u$")
+          label(for="descripcion") Ingrese Descripcion Entrenamiento:
+          textarea(id="descripcion", name="descripcion", placeholder="Descripcion", rows=6, value="#{sesion.s_tipo_entrenamiento}")
+        
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Modificar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade

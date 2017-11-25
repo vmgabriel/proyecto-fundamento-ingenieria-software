@@ -986,6 +986,45 @@ router.route("/sesion/:id")
         res.render("platform/sesion/show",{sesion:doc});
       }
     });
+  }).put(function(req, res){
+    Sesion.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        doc.s_descripcion_entrenamiento = req.body.descripcion,
+        doc.d_fecha_entrenamiento_inicio = req.body.fecha_inicio,
+        doc.d_fecha_entrenamiento_fin = req.body.fecha_fin,
+        doc.s_intensidad = req.body.cbintensidad,
+        doc.s_ciudad = req.body.ciudad,
+        doc.s_tipo_entrenamiento = req.body.tipo
+        doc.save(function(err1){
+          if (!err1)
+          {
+            res.render("platform/sesion/show", {sesion: doc});
+          }
+          else
+          {
+            res.redirect("platform/sesion/"+doc._id+"/edit");
+          }
+        });
+      }
+    });
+  }).delete(function(req, res){
+    Sesion.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/sesion/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/sesion");
+      }
+    });
   });
 
 router.route("/reporte/:id")
