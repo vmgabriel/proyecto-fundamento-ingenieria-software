@@ -622,6 +622,41 @@ router.route("/sucursal/:id")
         res.render("platform/sucursal/show",{sucursal:doc});
       }
     });
+}).put(function(req, res){
+  Sucursal.findById(req.params.id, function(err, doc){
+    if (err)
+    {
+      console.log("Sucursal con ese ID no existe");
+      res.redirect("platform/");
+    }
+    else {
+      doc.s_nombre = req.body.nombre,
+      doc.s_direccion = req.body.direccion,
+      doc.i_cantidadCategorias = req.body.categorias,
+      doc.s_ciudad = req.body.ciudad
+      doc.save(function(err1){
+        if (!err1)
+        {
+          res.render("platform/sucursal/show", {sucursal: doc});
+        }
+        else {
+          res.redirect("platform/sucursal/"+doc._id+"/edit");
+        }
+      });
+    }
+  });
+}).delete(function(req, res){
+  Sucursal.findOneAndRemove({_id: req.params.id},function(err){
+    if(err)
+    {
+      console.log(err);
+      res.redirect("/platform/sucursal/"+req.params.id);
+    }
+    else
+    {
+      res.redirect("/platform/sucursal");
+    }
+  });
 });
 
 router.route("/entrenador/:id")
