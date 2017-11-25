@@ -651,6 +651,43 @@ router.route("/curso/:id")
         res.render("platform/curso/show",{curso:doc});
       }
     });
+  }).put(function(req, res){
+    Curso.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else {
+        doc.s_nombre = req.body.nombre,
+        doc.s_categoria = req.body.cbcategoria,
+        doc.s_descripcion = req.body.descripcion,
+        doc.n_precio = req.body.precio,
+        doc.s_telefono = req.body.telefono,
+        doc.s_entrenador = req.body.entrenador
+        doc.save(function(err){
+          if (!err)
+          {
+            res.render("platform/curso/show", {curso: doc});
+          }
+          else {
+            res.redirect("platform/curso/"+doc._id+"/edit");
+          }
+        });
+      }
+    });
+  }).delete(function(req, res){
+    Clase.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/clase/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/clase");
+      }
+    });
   });
 
 router.route("/acudiente/:id")

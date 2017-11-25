@@ -1,0 +1,64 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Modificar Curso
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/curso/#{curso._id}?_method=PUT')
+      .row.uniform(class='50%')
+        div(class='12u$')
+            label(for="nombre") Ingrese Nombre:
+            input#name(name='nombre', value='#{curso.s_nombre}', placeholder='Nombre', type='text')
+        div(class='12u$')
+          label(for="cbcategoria") Seleccione la Categoria:
+          div(class="select-wrapper")
+            select(id="cbscategoria" name="cbcategoria")
+              option(value="sub-11") sub-11
+              option(value="sub-15") sub-15
+              option(value="sub-20") sub-20
+              option(value="profesional") profesional
+        div(class='12u$')
+            label(for="precio") Ingrese Precio:
+            input(name='precio', value='#{curso.n_precio}', placeholder='Precio', type='text')
+        div(class='12u$')
+          label(for="telefono") Ingrese Telefono:
+          input(name='telefono', value='#{curso.s_telefono}', placeholder='Telefono', type='text')
+        
+        .table-wrapper
+          h4 Seleccione Entrenador
+          table.alt
+              thead
+                tr
+                  th Seleccion
+                  th Cedula
+                  th Nombre
+                  th Apellido
+                  th Correo
+                  th Telefono
+              tbody
+                for entrenador in entrenadores
+                  tr
+                    td 
+                      input(id="#{entrenador._id}", value="#{entrenador._id}", checked='', name='entrenador', type='radio')
+                      label(for="#{entrenador._id}") .
+                    td= entrenador.n_ced
+                    td= entrenador.s_nombre
+                    td= entrenador.s_apellido
+                    td= entrenador.s_correo
+                    td= entrenador.n_telefono
+                    
+        div(class="12u$")
+          label(for="descripcion") Ingrese Descripcion:
+          textarea(id="descripcion" name="descripcion" placeholder="Descripcion" rows=6 value="#{curso.s_descripcion}")
+        
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Modificar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade
