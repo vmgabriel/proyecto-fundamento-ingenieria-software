@@ -28,15 +28,15 @@ block contenido
         h4 Telefono del evento:
         p= evento.n_telefono
         
-  div(class="row")
-    div(class='6u$')
-      ul.actions
-        li
-          a(href="/platform/evento/#{evento._id}/edit", class="button") Editar
-    div(class='6u$')
-      ul.actions
-        li
-          form(action="/platform/evento/#{evento._id}?_method=DELETE", method="POST")
-            input.special(value='Eliminar', type='submit')
+    div(class="row")
+      div(class='6u$')
+        ul.actions
+          li
+            a(href="/platform/evento/#{evento._id}/edit", class="button") Editar
+      div(class='6u$')
+        ul.actions
+          li
+            form(action="/platform/evento/#{evento._id}?_method=DELETE", method="POST")
+              input.special(value='Eliminar', type='submit')
         
   include ../../template/footer.jade

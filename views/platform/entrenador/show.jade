@@ -33,15 +33,15 @@ block contenido
       li
         h4 Sucursal del entrenador:
         a(href="/platform/sucursal/#{entrenador.s_sucursal}") Ver
-  div(class="row")
-    div(class='6u$')
-      ul.actions
-        li
-          a(href="/platform/entrenador/#{entrenador._id}/edit", class="button") Editar
-    div(class='6u$')
-      ul.actions
-        li
-          form(action="/platform/entrenador/#{entrenador._id}?_method=DELETE", method="POST")
-            input.special(value='Eliminar', type='submit')
+    div(class="row")
+      div(class='6u$')
+        ul.actions
+          li
+            a(href="/platform/entrenador/#{entrenador._id}/edit", class="button") Editar
+      div(class='6u$')
+        ul.actions
+          li
+            form(action="/platform/entrenador/#{entrenador._id}?_method=DELETE", method="POST")
+              input.special(value='Eliminar', type='submit')
 
   include ../../template/footer.jade

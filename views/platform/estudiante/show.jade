@@ -49,15 +49,15 @@ block contenido
         h4 Acudiente del estudiante:
         a(href="/platform/acudiente/#{estudiante.i_acudiente}") Ver
         
-  div(class="row")
-    div(class='6u$')
-      ul.actions
-        li
-          a(href="/platform/estudiante/#{estudiante._id}/edit", class="button") Editar
-    div(class='6u$')
-      ul.actions
-        li
-          form(action="/platform/estudiante/#{estudiante._id}?_method=DELETE", method="POST")
-            input.special(value='Eliminar', type='submit')
+    div(class="row")
+      div(class='6u$')
+        ul.actions
+          li
+            a(href="/platform/estudiante/#{estudiante._id}/edit", class="button") Editar
+      div(class='6u$')
+        ul.actions
+          li
+            form(action="/platform/estudiante/#{estudiante._id}?_method=DELETE", method="POST")
+              input.special(value='Eliminar', type='submit')
 
   include ../../template/footer.jade

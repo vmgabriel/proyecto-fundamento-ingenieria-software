@@ -7,11 +7,11 @@ block contenido
       h2 Modificar Clase
       p Ingrese los datos solicitados para ingresarlo a la base de datos
     h3 Formulario
-    form(method='POST', action='/platform/clase/{clase._id}?_method=PUT')
+    form(method='POST', action='/platform/clase/#{clase._id}?_method=PUT')
       .row.uniform(class='50%')
         div(class='12u$')
             label(for="tipo_clase") Ingrese Tipo de Clase:
-            input#name(name='tipo_clase', value='#{clase.s_clase_tipo}', placeholder='Tipo de Clase', type='text')
+            input(name='tipo_clase', value='#{clase.s_clase_tipo}', placeholder='Tipo de Clase', type='text')
         div(class='12u$')
           label(for="ciudad") Ingrese Ciudad:
           input(name='ciudad', value='#{clase.s_ciudad}', placeholder='Ciudad', type='text')

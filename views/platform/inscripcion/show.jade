@@ -31,15 +31,15 @@ block contenido
         h4 Estudiante de la inscripcion:
         a(href="/platform/estudiante/#{inscripcion.i_estudiante}") Ver
         
-  div(class="row")
-    div(class='6u$')
-      ul.actions
-        li
-          a(href="/platform/inscripcion/#{inscripcion._id}/edit", class="button") Editar
-    div(class='6u$')
-      ul.actions
-        li
-          form(action="/platform/inscripcion/#{inscripcion._id}?_method=DELETE", method="POST")
-            input.special(value='Eliminar', type='submit')
+    div(class="row")
+      div(class='6u$')
+        ul.actions
+          li
+            a(href="/platform/inscripcion/#{inscripcion._id}/edit", class="button") Editar
+      div(class='6u$')
+        ul.actions
+          li
+            form(action="/platform/inscripcion/#{inscripcion._id}?_method=DELETE", method="POST")
+              input.special(value='Eliminar', type='submit')
 
   include ../../template/footer.jade

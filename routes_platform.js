@@ -813,6 +813,45 @@ router.route("/clase/:id")
         res.render("platform/clase/show",{clase: doc});
       }
     });
+  })
+  .put(function(req, res){
+    Clase.findById(req.params.id, function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else {
+        doc.s_clase_tipo = req.body.tipo_clase,
+        doc.d_clase_caracteristica = req.body.caracteristica,
+        doc.s_ciudad = req.body.ciudad,
+        doc.i_sesion = req.body.sesion,
+        doc.i_estudiante = req.body.estudiante
+
+        doc.save(function(err){
+          if (!err)
+          {
+            res.render("platform/clase/show", {clase: doc});
+          }
+          else
+          {
+            res.redirect("platform/clase/"+doc._id+"/edit");
+          }
+        });
+      }
+    });
+  }).delete(function(req, res){
+    Clase.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/clase/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/clase");
+      }
+    });
   });
 
 router.route("/inscripcion/:id")
