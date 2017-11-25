@@ -1238,6 +1238,46 @@ router.route("/torneo/:id")
         res.render("platform/torneo/show",{torneo: doc});
       }
     });
+  }).put(function(req, res){
+    Torneo.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        doc.s_nombre = req.body.nombre,
+        doc.d_fecha_torneo = req.body.fecha,
+        doc.s_ranking_torneo = req.body.ranking,
+        doc.s_ciudad = req.body.ciudad,
+        doc.s_pais = req.body.pais,
+        doc.s_puesto_torneo = req.body.puesto,
+        doc.i_estudiante = req.body.estudiante
+        doc.save(function(err1){
+          if (!err1)
+          {
+            res.render("platform/torneo/show", {torneo: doc});
+          }
+          else
+          {
+            res.redirect("platform/torneo/"+doc._id+"/edit");
+          }
+        });
+      }
+    });
+  }).delete(function(req, res){
+    Torneo.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/torneo/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/torneo");
+      }
+    });
   });
 
 //Editar
@@ -1524,7 +1564,7 @@ router.route("/torneo/:id/edit")
           }
           else
           {
-            res.render("platform/torneo/edit",{estudiantes: doc, torneos: doc1});
+            res.render("platform/torneo/edit",{estudiantes: doc, torneo: doc1});
           }
         });
       }
