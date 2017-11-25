@@ -931,6 +931,46 @@ router.route("/pago/:id")
         res.render("platform/pago/show",{pago:doc});
       }
     });
+  }).put(function(req, res){
+    Pago.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        doc.s_pago_banco = req.body.pago,
+        doc.n_cantidad_pago = req.body.cantidad,
+        doc.d_fecha_maxima_pago = req.body.fecha,
+        doc.s_tipo_pago = req.body.tipo_pago,
+        doc.s_descripcion = req.body.descripcion,
+        doc.i_curso = req.body.curso
+        doc.save(function(err1){
+          if(err1)
+          {
+            console.log(err1);
+            res.redirect("/platform/pago/"+req.params.id);
+          }
+          else
+          {
+            res.redirect("/platform/pago");
+          }
+        });
+      }
+    });
+  }).delete(function(req, res){
+    Pago.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/pago/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/pago");
+      }
+    });
   });
 
 router.route("/sesion/:id")

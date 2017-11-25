@@ -1,0 +1,54 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Modifcar Pago
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/pago/#{pago._id}?_method=PUT')
+      .row.uniform(class='50%')
+        div(class='12u$')
+          label(for="pago") Ingrese Banco para Pago:
+          input(name='pago', value='#{pago.s_pago_banco}', placeholder="Banco para Pago", type='text')
+        div(class='12u$')
+          label(for="cantidad") Ingrese Cantidad a Pagar:
+          input(name='cantidad', value='#{pago.n_cantidad_pago}', placeholder="Cantidad a Pagar", type='text')
+        div(clas="12u$")
+          label(for="fecha") Ingrese Fecha Maxima de Pago:
+          input(id="fecha", class="fecha", name="fecha" ,type="date", value="#{pago.d_fecha_maxima_pago}")
+        div(class='12u$')
+          label(for="tipo_pago") Ingrese Tipo de Pago:
+          input(name='tipo_pago', value='#{pago.s_tipo_pago}', placeholder='Tipo de Pago', type='text')
+        div(class="12u$")
+          label(for="descripcion") Ingrese Descripcion:
+          textarea(id="descripcion", name="descripcion", placeholder="Descripcion", rows=6, value="#{pago.s_descripcion}")
+        
+        .table-wrapper
+          h4 Seleccione Curso a Vincular
+          table.alt
+              thead
+                tr
+                  th Seleccionado
+                  th Nombre
+                  th Categoria
+                  th Telefono
+              tbody
+                for curso in cursos
+                  tr
+                    td 
+                      input(id="#{curso._id}", value="#{curso._id}", checked='', name='curso', type='radio')
+                      label(for="#{curso._id}") .
+                    td= curso.s_nombre
+                    td= curso.s_categoria
+                    td= curso.s_telefono
+        
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Modificar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade
