@@ -1001,6 +1001,45 @@ router.route("/reporte/:id")
         res.render("platform/reporte/show",{reporte:doc});
       }
     });
+  }).put(function(req, res){
+    Reporte.findById(req.params.id,function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        doc.s_reporte_banco = req.body.nombre_banco,
+        doc.n_cantidad_reporte = req.body.cantidad,
+        doc.n_codigo_reporte = req.body.cod_reporte,
+        doc.d_fecha_reporte = req.body.fecha,
+        doc.s_tipo_reporte = req.body.tipo_reporte,
+        doc.i_pago = req.body.pago
+        doc.save(function(err1){
+          if (!err1)
+          {
+            res.render("platform/reporte/show", {reporte: doc});
+          }
+          else
+          {
+            res.redirect("platform/reporte/"+doc._id+"/edit");
+          }
+        });
+      }
+    });
+  }).delete(function(req, res){
+    Reporte.findOneAndRemove({_id: req.params.id},function(err){
+      if(err)
+      {
+        console.log(err);
+        res.redirect("/platform/reporte/"+req.params.id);
+      }
+      else
+      {
+        res.redirect("/platform/reporte");
+      }
+    });
   });
 
 router.route("/clase/:id")
@@ -1340,17 +1379,27 @@ router.route("/pago/:id/edit")
 
 router.route("/reporte/:id/edit")
   .get(function(req, res){
-      Reporte.findById(req.params.id, function(err, doc){
-        if (err)
-        {
-          console.log(err);
-          res.redirect("platform/");
-        }
-        else
-        {
-          res.render("platform/reporte/edit",{reporte: doc});
-        }
-      });
+    Pago.find({}, function(err, doc){
+      if (err)
+      {
+        console.log(err);
+        res.redirect("platform/");
+      }
+      else
+      {
+        Reporte.findById(req.params.id, function(err1, doc1){
+          if (err1)
+          {
+            console.log(err1);
+            res.redirect("platform/");
+          }
+          else
+          {
+            res.render("platform/reporte/edit",{reporte: doc1, pagos: doc});
+          }
+        });
+      }
+    });
   });
 
 router.route("/sesion/:id/edit")

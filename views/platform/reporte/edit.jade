@@ -1,0 +1,56 @@
+extends ../../template/layout.jade
+block contenido
+  include ../../template/header.jade
+
+  div(class="container")
+    header(class="major special")
+      h2 Modificar Reporte
+      p Ingrese los datos solicitados para ingresarlo a la base de datos
+    h3 Formulario
+    form(method='POST', action='/platform/reporte/#{reporte._id}?_method=PUT')
+      .row.uniform(class='50%')
+        div(class='12u$')
+            label(for="nombre_banco") Ingrese Nombre de Banco:
+            input#name(name='nombre_banco', value='#{reporte.s_reporte_banco}', placeholder='Nombre Banco', type='text')
+        div(class='12u$')
+            label(for="cantidad") Ingrese Cantidad a Reportar:
+            input(name='cantidad', value='#{reporte.n_cantidad_reporte}', placeholder='Cantidad a Reportar', type='text')
+        div(class='12u$')
+          label(for="cod_reporte") Ingrese Codigo de Reporte:
+          input(name='cod_reporte', value='#{reporte.n_codigo_reporte}', placeholder='Codigo de Reporte', type='text')
+        div(clas="12u$")
+          label(for="fecha") Ingrese Fecha de Reporte:
+          input(id="fecha", class="fecha", name="fecha" ,type="date", value="#{reporte.d_fecha_reporte}")
+        div(class='12u$')
+          label(for="tipo_reporte") Ingrese Tipo de Reporte:
+          input(name='tipo_reporte', value='#{reporte.s_tipo_reporte}', placeholder='Tipo de Reporte', type='text')
+        
+        .table-wrapper
+          h4 Seleccione pago
+          table.alt
+              thead
+                tr
+                  th Seleccion
+                  th Cantidad Pago
+                  th Fecha Maxima
+                  th Tipo
+                  th Descripcion
+              tbody
+                for pago in pagos
+                  tr
+                    td 
+                      input(id="#{pago._id}", value="#{pago._id}", checked='', name='pago', type='radio')
+                      label(for="#{pago._id}") .
+                    td= pago.n_cantidad_pago
+                    td= pago.d_fecha_maxima_pago
+                    td= pago.s_tipo_pago
+                    td= pago.s_descripcion
+        
+        div(class='12u$')
+          ul.actions
+            li
+              input.special(value='Modificar', type='submit')
+            li
+              input(value='Borrar', type='reset')
+
+  include ../../template/footer.jade
