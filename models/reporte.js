@@ -9,7 +9,8 @@ var Reporte_schema = new Schema({
   n_codigo_reporte: {type: String, required: "Codigo del reporte es necesario"},
   d_fecha_reporte: {type: Date, requiered: "Fecha de reporte es necesario"},
   s_tipo_reporte: {type: String, required: "Tipo de reporte es necesario"},
-  i_pago: {type: Schema.Types.ObjectId, ref: "pago", required: "Pago es necesario"}
+  i_pago: {type: Schema.Types.ObjectId, ref: "pago", required: "Pago es necesario"},
+  i_estudiante: {type: Schema.Types.ObjectId, ref: "estudiante", required: "Estudiante es necesario"}
 });
 
 var reporte = mongoose.model("Reporte", Reporte_schema);

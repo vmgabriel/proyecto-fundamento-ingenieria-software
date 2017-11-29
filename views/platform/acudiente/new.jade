@@ -73,24 +73,27 @@ block contenido
           label(for="descripcion") Ingrese Descripcion:
           textarea(id="descripcion" name="descripcion" placeholder="Descripcion" rows=6)
         
-        .table-wrapper
-          h4 Seleccione Curso a Vincular
-          table.alt
-              thead
-                tr
-                  th Seleccionado
-                  th Nombre
-                  th Categoria
-                  th Telefono
-              tbody
-                for curso in cursos
+          .table-wrapper
+            table.alt
+                thead
                   tr
-                    td 
-                      input(id="#{curso._id}", value="#{curso._id}", checked='', name='curso', type='radio')
-                      label(for="#{curso._id}") .
-                    td= curso.s_nombre
-                    td= curso.s_categoria
-                    td= curso.s_telefono
+                    th Nombre
+                    th Categoria
+                    th Precio
+                    th Telefono
+                    th Entrenador
+                    th Seleccion
+                tbody
+                  for curso in cursos
+                    tr
+                      th= curso.s_nombre
+                      th= curso.s_categoria
+                      th= curso.n_precio
+                      th= curso.s_telefono
+                      th
+                        a(href="entrenador/#{curso.s_entrenador}") Ver
+                      th
+                        a(href="curso/#{curso._id}") Seleccionar
         
         div(class='12u$')
           ul.actions

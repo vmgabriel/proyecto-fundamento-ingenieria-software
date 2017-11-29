@@ -1,5 +1,7 @@
 var express = require("express");
 
+var each = require('sync-each');
+
 var Sucursal = require("./models/sucursal").Sucursal;
 var Entrenador = require("./models/entrenador").Entrenador;
 var Curso = require("./models/curso").Curso;
@@ -16,7 +18,23 @@ var Torneo = require("./models/torneo").Torneo;
 var router = express.Router();
 
 router.get("/", function(req, res){
-  res.render("platform/home");
+  Reporte.find({}, function(err, doc){
+    if (!err)
+    {
+      Curso.find({}, function(err1, doc1){
+        if (!err1)
+        {
+          res.render("platform/home", {reportes: doc, cursos: doc1});
+        }
+        else {
+          red.send("Error en Mongo");
+        }
+      });
+    }
+    else {
+
+    }
+  });
 });
 
 router.get("/sucursal/new", function(req, res){
@@ -110,7 +128,15 @@ router.get("/reporte/new", function(req, res){
     }
     else
     {
-      res.render("platform/reporte/new", {pagos:doc});
+      Estudiante.find({}, function (err1, doc1){
+        if (err1){
+          console.log(err)
+          res.redirect("platform/")
+        }
+        else {
+          res.render("platform/reporte/new", {pagos:doc , estudiantes: doc1});
+        }
+      });
     }
   });
 });
@@ -493,7 +519,8 @@ router.route("/reporte")
       n_codigo_reporte: req.body.cod_reporte,
       d_fecha_reporte: req.body.fecha,
       s_tipo_reporte: req.body.tipo_reporte,
-      i_pago: req.body.pago
+      i_pago: req.body.pago,
+      i_estudiante: req.body.estudiante
     };
 
     let reporte = new Reporte(datos);
@@ -1089,7 +1116,8 @@ router.route("/reporte/:id")
         doc.n_codigo_reporte = req.body.cod_reporte,
         doc.d_fecha_reporte = req.body.fecha,
         doc.s_tipo_reporte = req.body.tipo_reporte,
-        doc.i_pago = req.body.pago
+        doc.i_pago = req.body.pago,
+        doc.i_estudiante = req.body.estudiante
         doc.save(function(err1){
           if (!err1)
           {
@@ -1501,15 +1529,24 @@ router.route("/reporte/:id/edit")
       }
       else
       {
-        Reporte.findById(req.params.id, function(err1, doc1){
+        Estudiante.find({}, function(err1, doc1){
           if (err1)
           {
-            console.log(err1);
+            console.log(err2);
             res.redirect("platform/");
           }
-          else
-          {
-            res.render("platform/reporte/edit",{reporte: doc1, pagos: doc});
+          else {
+            Reporte.findById(req.params.id, function(err2, doc2){
+              if (err2)
+              {
+                console.log(err2);
+                res.redirect("platform/");
+              }
+              else
+              {
+                res.render("platform/reporte/edit",{reporte: doc2, pagos: doc, estudiantes: doc1});
+              }
+            });
           }
         });
       }

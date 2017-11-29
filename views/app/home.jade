@@ -2,6 +2,54 @@ extends ../template/layout.jade
 block contenido
   include ../template/header.jade
   
-  h1 Bienvenido Acudiente su nombre es #{user.s_nombre} y su apellido #{user.s_apellido}
+  section(id="main" class="wrapper")
+    header(class="major special")
+      h2 Bienvenido Acudiente #{user.s_nombre} #{user.s_apellido}
+      
+      .container
+        .table-wrapper
+          h4 Ultimos Reportes Hechos
+          table.alt
+              thead
+                tr
+                  th Tipo
+                  th Fecha Reporte
+                  th Cantidad
+                  th Banco
+                  th Codigo
+                  th Seleccion
+              tbody
+                for reporte in reportes
+                  tr
+                    th= reporte.s_tipo_reporte
+                    th= reporte.d_fecha_reporte
+                    th= reporte.n_cantidad_reporte
+                    th= reporte.s_reporte_banco
+                    th= reporte.n_codigo_reporte
+                    th
+                      a(href="/platform/reporte/#{reporte._id}") Seleccionar
+                  
+        .table-wrapper
+          h4 Cursos
+          table.alt
+              thead
+                tr
+                  th Nombre
+                  th Categoria
+                  th Precio
+                  th Telefono
+                  th Entrenador
+                  th Seleccion
+              tbody
+                for curso in cursos
+                  tr
+                    th= curso.s_nombre
+                    th= curso.s_categoria
+                    th= curso.n_precio
+                    th= curso.s_telefono
+                    th
+                      a(href="entrenador/#{curso.s_entrenador}") Ver
+                    th
+                      a(href="curso/#{curso._id}") Seleccionar
   
   include ../template/footer.jade

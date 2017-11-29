@@ -8,96 +8,49 @@ block contenido
       
       .container
         .table-wrapper
-          h4 Estudiantes en estado de mora
+          h4 Ultimos Reportes Hechos
           table.alt
               thead
                 tr
-                  th Seleccionado
-                  th Nombre
-                  th Direccion
-                  th Ciudad
+                  th Tipo
+                  th Fecha Reporte
+                  th Cantidad
+                  th Banco
+                  th Codigo
+                  th Seleccion
               tbody
-                tr
-                  td 
-                    input#val1(name='estMora', checked='', type='radio')
-                    label(for="val1") .
-                  td Item 1
-                  td Ante turpis integer aliquet porttitor.
-                  td 29.99
-                tr
-                  td 
-                    input#val2(name='estMora', type='radio')
-                    label(for="val2") .
-                  td Item 2
-                  td Vis ac commodo adipiscing arcu aliquet.
-                  td 19.99
-                tr
-                  td 
-                    input#val3(name='estMora', type='radio')
-                    label(for="val3") .
-                  td Item 3
-                  td  Morbi faucibus arcu accumsan lorem.
-                  td 29.99
-                tr
-                  td 
-                    input#val4(name='estMora', type='radio')
-                    label(for="val4") .
-                  td Item 4
-                  td Vitae integer tempus condimentum.
-                  td 19.99
-                tr
-                  td 
-                    input#val5(name='estMora', type='radio')
-                    label(for="val5") .
-                  td Item 5
-                  td Ante turpis integer aliquet porttitor.
-                  td 29.99
+                for reporte in reportes
+                  tr
+                    th= reporte.s_tipo_reporte
+                    th= reporte.d_fecha_reporte
+                    th= reporte.n_cantidad_reporte
+                    th= reporte.s_reporte_banco
+                    th= reporte.n_codigo_reporte
+                    th
+                      a(href="/platform/reporte/#{reporte._id}") Seleccionar
                   
         .table-wrapper
-          h4 Cursos Inscritos
+          h4 Cursos
           table.alt
               thead
                 tr
-                  th Seleccionado
                   th Nombre
-                  th Direccion
-                  th Ciudad
+                  th Categoria
+                  th Precio
+                  th Telefono
+                  th Entrenador
+                  th Seleccion
               tbody
-                tr
-                  td 
-                    input#val1(name='priority', checked='', type='radio')
-                    label(for="val1") .
-                  td Item 1
-                  td Ante turpis integer aliquet porttitor.
-                  td 29.99
-                tr
-                  td 
-                    input#val2(name='priority', type='radio')
-                    label(for="val2") .
-                  td Item 2
-                  td Vis ac commodo adipiscing arcu aliquet.
-                  td 19.99
-                tr
-                  td 
-                    input#val3(name='priority', type='radio')
-                    label(for="val3") .
-                  td Item 3
-                  td  Morbi faucibus arcu accumsan lorem.
-                  td 29.99
-                tr
-                  td 
-                    input#val4(name='priority', type='radio')
-                    label(for="val4") .
-                  td Item 4
-                  td Vitae integer tempus condimentum.
-                  td 19.99
-                tr
-                  td 
-                    input#val5(name='priority', type='radio')
-                    label(for="val5") .
-                  td Item 5
-                  td Ante turpis integer aliquet porttitor.
-                  td 29.99
+                for curso in cursos
+                  tr
+                    th= curso.s_nombre
+                    th= curso.s_categoria
+                    th= curso.n_precio
+                    th= curso.s_telefono
+                    th
+                      a(href="entrenador/#{curso.s_entrenador}") Ver
+                    th
+                      a(href="curso/#{curso._id}") Seleccionar
       
       section(id="one" class="wrapper style1")
         h4 ingresar y Modificar nuevos
@@ -170,12 +123,6 @@ block contenido
                 a(class="button" href="platform/inscripcion/new") Nueva Inscripcion
               li
                 a(class="button alt" href="platform/inscripcion") Ver Inscripciones
-          div(class="3u 6u(small) 12u$(xsmall)")
-            ul(class="actions vertical")
-              li
-                a(class="button" href="platform/proceso/new") Nuevo Proceso
-              li
-                a(class="button alt" href="platform/proceso") Ver Procesos
           div(class="3u 6u(small) 12u$(xsmall)")
             ul(class="actions vertical")
               li

@@ -43,6 +43,31 @@ block contenido
                     td= curso.s_nombre
                     td= curso.s_categoria
                     td= curso.s_telefono
+                    
+        .table-wrapper
+          h4 Seleccione Estudiante
+          table.alt
+              thead
+                tr
+                  th Seleccion
+                  th Nit
+                  th Cedula
+                  th Nombre
+                  th Apellido
+                  th Correo
+                  th Colegio
+              tbody
+                for estudiante in estudiantes
+                  tr
+                    td 
+                      input(id="#{estudiante._id}", value="#{estudiante._id}", checked='', name='estudiante', type='radio')
+                      label(for="#{estudiante._id}") .
+                    td= estudiante.n_nit
+                    td= estudiante.n_cedula
+                    td= estudiante.s_nombre
+                    td= estudiante.s_apellido
+                    td= estudiante.s_correo
+                    td= estudiante.s_colegio
         
         div(class='12u$')
           ul.actions

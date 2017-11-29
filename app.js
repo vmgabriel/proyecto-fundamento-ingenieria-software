@@ -47,6 +47,11 @@ app.get("/login", function(req,res){
   res.render("login");
 });
 
+app.get("/signdown", function(req, res){
+  req.session.user_id = null;
+  res.redirect("/");
+});
+
 app.post("/cotizante", function(req, res){
   let cotizante = new Cotizante({
     s_nombre: req.body.nombre,
